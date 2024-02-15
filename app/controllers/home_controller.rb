@@ -3,7 +3,4 @@ class HomeController < ApplicationController
     @name = 'Rayman Yan'
   end
 
-  def kk 
-    @xx = '333'
-  end
 end

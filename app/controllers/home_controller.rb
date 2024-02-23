@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @name = 'Rayman Yan'
+    @properties = Property.all
   end
 
 end

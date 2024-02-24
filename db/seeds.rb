@@ -9,24 +9,16 @@
 #   end
 
 
-Property.create!({
-    name: 'Sample Property',
-    description: 'this is very good place to stay',
-    headline: 'A mountaineering-view bedroom',
-    address_1: 'Hongxing Rd, #305',
-    address_2: 'Shuangliu Dist',
-    city: 'Chengdu',
-    state: 'State',
-    country: 'China',
-})
 
-property = Property.create!({
-    name: 'Good Property',
-    description: 'I love this place, man.',
-    headline: 'A lake side wooden house',
-    address_1: 'Tianfu Airplane, #3333',
-    address_2: 'Qingyang Dist',
-    city: 'Zhengzhou',
-    state: 'State',
-    country: 'India',
-})
+20.times do 
+    Property.create!({
+        name: Faker::Lorem.unique.sentence(word_count: 3),
+        description: Faker::Lorem.paragraph(sentence_count: 2),
+        headline: Faker::Lorem.unique.sentence(word_count: 6),
+        address_1: Faker::Address.street_address,
+        address_2: Faker::Address.street_name,
+        city: Faker::Address.city,
+        state: Faker::Address.state,
+        country: Faker::Address.country,
+    })
+end

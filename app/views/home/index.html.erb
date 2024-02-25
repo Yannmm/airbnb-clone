@@ -18,7 +18,7 @@
       <% @properties.each do |property| %>
         <div class="group relative">
           <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaXv1uhOWFjI0LFOjRp7Zty11tj92ni7Tg6Q&usqp=CAU" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+            <%= image_tag property.images.last, class: "h-full w-full object-cover object-center lg:h-full lg:w-full", alt: "Front of men&#039;s Basic Tee in black."%>
           </div>
           <div class="mt-2">
             <div class="flex justify-between">

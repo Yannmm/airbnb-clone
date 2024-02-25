@@ -10,8 +10,8 @@
 
 
 
-20.times do 
-    Property.create!({
+10.times do |i|
+    property = Property.create!({
         name: Faker::Lorem.unique.sentence(word_count: 3),
         description: Faker::Lorem.paragraph(sentence_count: 2),
         headline: Faker::Lorem.unique.sentence(word_count: 6),
@@ -20,6 +20,9 @@
         city: Faker::Address.city,
         state: Faker::Address.state,
         country: Faker::Address.country,
-        price: Money::from_amount((50..100).to_a.sample, 'USD')
+        price: Money::from_amount((50..100).to_a.sample, 'USD'),
     })
+
+    property.images.attach(io: File.open("db/images/property_#{i + 1}.JPG"), filename: "#{property.name}.jpg")
+    property.images.attach(io: File.open("db/images/property_#{i + 7}.JPG"), filename: "#{property.name}.jpg")
 end

@@ -7,4 +7,8 @@ class Property < ApplicationRecord
 
     has_many :reviews, dependent: :destroy
 
+    def update_average_final_rating
+        avg = reviews.average(:final_rating)
+        update_attribute(:average_final_rating, avg);
+    end
 end

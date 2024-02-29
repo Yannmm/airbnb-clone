@@ -17,7 +17,7 @@ class Review < ApplicationRecord
   def update_final_rating
     total = cleanliness_rating + accuracy_rating + checkin_rating + communication_rating + location_rating + value_rating
 
-    update_attribute(:final_rating, total.to_f / 6)
+    update_column(:final_rating, total.to_f / 6)
 
     property.update_average_final_rating
   end

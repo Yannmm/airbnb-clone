@@ -6,6 +6,14 @@ export default class extends Controller {
   }
 
   updateWishlistStatus() {
+    const userLoggedIn = this.element.dataset.userLoggedIn;
+
+    if (userLoggedIn == "false") {
+      //   document.querySelector(".js-login").click();
+      document.getElementsByClassName("js-login")[0].click();
+      return;
+    }
+
     if (this.element.dataset.wishlistStatus == "false") {
       this.element.classList.remove("fill-none");
       this.element.classList.add("fill-primary");

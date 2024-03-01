@@ -79,9 +79,10 @@
             data-transition-leave-end="transform opacity-0 scale-95">
             <!-- Active: "bg-gray-100", Not Active: "" -->
             <% if user_signed_in? %>
+              <%= link_to 'Wishlist', "#", class: "block px-4 py-2 text-sm text-gray-700", role: "menuitem", tabindex: "-1", id: "user-menu-item-0" %>
               <%= link_to 'Log out', destroy_user_session_path, class: "block px-4 py-2 text-sm text-gray-700", role: "menuitem", tabindex: "-1", id: "user-menu-item-0", data: { turbo_method: :delete } %>
             <% else %>
-              <%= link_to 'Log in', new_user_session_path, class: "block px-4 py-2 text-sm text-gray-700", role: "menuitem", tabindex: "-1", id: "user-menu-item-0" %>
+              <%= link_to 'Log in', new_user_session_path, class: "js-login block px-4 py-2 text-sm text-gray-700", role: "menuitem", tabindex: "-1" %>
               <%= link_to 'Sign up', new_user_registration_path, class: "block px-4 py-2 text-sm text-gray-700", role: "menuitem", tabindex: "-1", id: "user-menu-item-2" %>
             <% end %>
           </div>
@@ -105,7 +106,7 @@
         <% if user_signed_in? %>
           <%= link_to 'Log out', destroy_user_session_path, class: "block rounded-md px-3 py-2 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900", data: { turbo_method: :delete } %>
         <% else %>
-          <%= link_to 'Log in', new_user_session_path, class: "block rounded-md px-3 py-2 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900" %>
+          <%= link_to 'Log in', new_user_session_path, class: "js-login block rounded-md px-3 py-2 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900" %>
           <%= link_to 'Sign up', new_user_registration_path, class: "block rounded-md px-3 py-2 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900" %>
         <% end %>
       </div>

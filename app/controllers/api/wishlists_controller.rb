@@ -1,7 +1,7 @@
 module Api 
     class WishlistsController < ApplicationController
 
-        # protect_from_forgery with: null_session
+        # protect_from_forgery with: :null_session
 
         # Create, Read, Update, Delete
 
@@ -24,12 +24,12 @@ module Api
             # remove from db
             # return response
 
-            wishlist = Wishlist.find!(params[:id])
+            wishlist = Wishlist.find(params[:id])
             wishlist.destroy
 
             respond_to do |format|
                 format.json do
-                    render status: 204
+                    head :no_content
                 end
             end
         end

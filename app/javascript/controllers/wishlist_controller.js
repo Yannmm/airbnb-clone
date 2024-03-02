@@ -8,8 +8,6 @@ export default class extends Controller {
   updateWishlistStatus() {
     const userLoggedIn = this.element.dataset.userLoggedIn;
 
-    console.log(userLoggedIn);
-
     if (userLoggedIn == "false") {
       //   document.querySelector(".js-login").click();
       document.getElementsByClassName("js-login")[0].click();

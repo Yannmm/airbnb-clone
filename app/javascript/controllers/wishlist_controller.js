@@ -10,6 +10,7 @@ export default class extends Controller {
 
     if (userLoggedIn == "false") {
       //   document.querySelector(".js-login").click();
+      // dummy comments
       document.getElementsByClassName("js-login")[0].click();
       return;
     }

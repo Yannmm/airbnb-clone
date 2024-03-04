@@ -13,6 +13,10 @@ class Property < ApplicationRecord
     # To use :wishlisted_users, you have to define :wishlists association first
     has_many :wishlisted_users, through: :wishlists, source: :user, dependent: :destroy
 
+    has_many :reservations, dependent: :destroy
+
+    has_many :reserved_users, through: :reservations, source: :user, dependent: :destroy
+
 
     def update_average_final_rating
         avg = reviews.average(:final_rating)

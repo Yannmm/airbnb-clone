@@ -9,8 +9,6 @@ export default class extends Controller {
     const userLoggedIn = this.element.dataset.userLoggedIn;
 
     if (userLoggedIn == "false") {
-      //   document.querySelector(".js-login").click();
-      // dummy comments
       document.getElementsByClassName("js-login")[0].click();
       return;
     }

@@ -23,4 +23,8 @@ class Property < ApplicationRecord
         return if user.nil?
         wishlisted_users.include?(user)
     end
+
+    def find_wishlist(user)
+        wishlists.find_by(user: user)
+    end
 end

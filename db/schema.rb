@@ -55,8 +55,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_02_002106) do
     t.datetime "updated_at", null: false
     t.integer "price_cents"
     t.string "price_currency"
-    t.integer "reviews_count"
     t.decimal "average_final_rating"
+    t.integer "reviews_count"
   end
 
   create_table "reviews", force: :cascade do |t|

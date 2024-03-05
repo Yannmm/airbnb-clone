@@ -31,4 +31,31 @@ class Property < ApplicationRecord
     def find_wishlist(user)
         wishlists.find_by(user: user)
     end
+
+    def available_dates
+        next_reservation = reservations.upcoming_reservations.first
+        current_reservation = reservations.current_reservations.first
+
+        
+        if next_reservation.nil? && current_reservation.nil?
+            # Next -> nil, current -> nil
+            # TODO: what is this `..`?
+            Date.tomorrow..Date.tomorrow + 30.days
+        elsif !next_reservation.nil? && current_reservation.nil?
+            # Next -> available, current -> nil
+            Date.tomorrow..next_reservation.checkin_date
+        elsif next_reservation.nil? && !current_reservation.nil?
+            # Next -> nil, current -> available
+            current_reservation.checkout_date..current_reservation.checkout_date + 30.days
+        else
+            # Next -> available, current -> available
+            current_reservation.checkout_date..next_reservation.checkin_date
+        end
+
+        
+
+        
+
+        
+    end
 end

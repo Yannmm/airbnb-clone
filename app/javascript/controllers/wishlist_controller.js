@@ -38,7 +38,7 @@ export default class extends Controller {
       },
     };
 
-    fetch(`api/wishlists/${wishlistId}`, options)
+    fetch(`/api/wishlists/${wishlistId}`, options)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -74,7 +74,7 @@ export default class extends Controller {
       body: JSON.stringify(params),
     };
 
-    fetch("api/wishlists", options)
+    fetch("/api/wishlists", options)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");

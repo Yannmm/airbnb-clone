@@ -28,6 +28,8 @@ user = User.create!({
 
     property.images.attach(io: File.open("db/images/property_#{i + 1}.JPG"), filename: "#{property.name}.jpg")
     property.images.attach(io: File.open("db/images/property_#{i + 7}.JPG"), filename: "#{property.name}.jpg")
+    property.images.attach(io: File.open("db/images/property_#{i + 2}.JPG"), filename: "#{property.name}.jpg")
+    property.images.attach(io: File.open("db/images/property_#{i + 6}.JPG"), filename: "#{property.name}.jpg")
     
     (50..100).to_a.sample.times do 
         Review.create!({ 

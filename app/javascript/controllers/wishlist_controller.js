@@ -1,11 +1,15 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
+  static targets = ["icon", "text"];
+
   connect() {
     console.log("wishlist connected");
   }
 
-  updateWishlistStatus() {
+  updateWishlistStatus(e) {
+    e.preventDefault();
+
     const userLoggedIn = this.element.dataset.userLoggedIn;
 
     if (userLoggedIn == "false") {
@@ -19,9 +23,10 @@ export default class extends Controller {
       this.addPropertyToWishlist(propertyId, userId);
     } else {
       const wishlistId = this.element.dataset.wishlistId;
-      console.log("wishlistId->", wishlistId);
       this.removePropertyFromWishlist(wishlistId);
     }
+
+    return false;
   }
 
   removePropertyFromWishlist(wishlistId) {
@@ -45,8 +50,11 @@ export default class extends Controller {
         }
       })
       .then((data) => {
-        this.element.classList.remove("fill-primary");
-        this.element.classList.add("fill-none");
+        this.iconTarget.classList.remove("fill-primary");
+        this.iconTarget.classList.add("fill-none");
+        if (this.hasTextTarget) {
+          this.textTarget.innerText = "Like";
+        }
         this.element.dataset.wishlistStatus = "false";
         delete this.element.dataset.wishlistId;
       })
@@ -84,8 +92,11 @@ export default class extends Controller {
       .then((data) => {
         // Process the retrieved user data
 
-        this.element.classList.remove("fill-none");
-        this.element.classList.add("fill-primary");
+        this.iconTarget.classList.remove("fill-none");
+        this.iconTarget.classList.add("fill-primary");
+        if (this.hasTextTarget) {
+          this.textTarget.innerText = "Saved";
+        }
         this.element.dataset.wishlistStatus = "true";
         this.element.dataset.wishlistId = data.id;
       })

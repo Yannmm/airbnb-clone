@@ -23,6 +23,10 @@ user = User.create!({
         city: Faker::Address.city,
         state: Faker::Address.state,
         country: Faker::Address.country,
+        bedroom_count: (1..5).to_a.sample,
+        guest_count: (2..20).to_a.sample,
+        bed_count: (4..10).to_a.sample,
+        bathroom_count: (1..4).to_a.sample,
         price: Money::from_amount((50..100).to_a.sample, 'USD'),
     })
 

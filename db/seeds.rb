@@ -16,7 +16,7 @@ user = User.create!({
 10.times do |i|
     property = Property.create!({
         name: Faker::Lorem.unique.sentence(word_count: 3),
-        description: Faker::Lorem.paragraph(sentence_count: 2),
+        description: Faker::Lorem.paragraph(sentence_count: 50),
         headline: Faker::Lorem.unique.sentence(word_count: 6),
         address_1: Faker::Address.full_address,
         address_2: Faker::Address.street_name,

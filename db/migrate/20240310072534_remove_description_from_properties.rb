@@ -1,0 +1,5 @@
+class RemoveDescriptionFromProperties < ActiveRecord::Migration[7.1]
+  def change
+    remove_column :properties, :description, :text
+  end
+end

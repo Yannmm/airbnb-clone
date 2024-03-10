@@ -263,7 +263,7 @@ DEPENDENCIES
   devise (~> 4.9, >= 4.9.3)
   error_highlight (>= 0.4.0)
   faker (~> 3.2)
-  image_processing (>= 1.2)
+  image_processing (~> 1.2)
   importmap-rails
   jbuilder
   money-rails (~> 1.12)

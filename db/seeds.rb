@@ -13,10 +13,40 @@ user = User.create!({
     password: '123456'
 })
 
+description = <<-DESCIRPTION
+<div>
+<h2  tabindex="-1">About this space</h2>
+</div>
+<div>
+<div>Freshly remodeled Vintage A-Frame. Natural light, trees, with lots of room to enjoy a getaway with the family or friends. Just minutes to Lake Arrowhead, Lake Gregory, Arrowhead Village, and the quaint little town of Blue Jay.<br /><br />The Vintage Modern A-frame is part of the &ldquo;Amor Collective&rdquo;. The Amor Collective gives 10% of profits from your booking to Habitat for Humanity. Habitat for Humanity brings people together to build homes, communities and hope.</div>
+</div>
+<div>
+<div>
+<div>
+<h3  tabindex="-1">The space</h3>
+</div>
+Modern, vintage and comfortable. Hang out on the mountain, near the Lakes in style! Spend some time sitting on the deck looking at the stars. You have the place to yourself!</div>
+</div>
+<div>
+<div>
+<div>
+<h3  tabindex="-1">Guest access</h3>
+</div>
+The whole house is yours. 4 bedrooms, two bathrooms and a beautiful kitchen and deck for entertaining. We charge an additional $100 for any undisclosed guest.</div>
+</div>
+<div>
+<div>
+<div>
+<h3  tabindex="-1">Other things to note</h3>
+</div>
+Our Vintage modern A frame has Central AC and heating and will keep you comfortable! Many places up the mountain do not have Air Conditioning. In the summer months it can be very hot. Ours will keep you cool and comfortable.</div>
+</div>
+DESCIRPTION
+
 10.times do |i|
     property = Property.create!({
         name: Faker::Lorem.unique.sentence(word_count: 3),
-        description: Faker::Lorem.paragraph(sentence_count: 50),
+        description: description,
         headline: Faker::Lorem.unique.sentence(word_count: 6),
         address_1: Faker::Address.full_address,
         address_2: Faker::Address.street_name,

@@ -4,7 +4,7 @@
 
     Off-canvas menu for mobile, show/hide based on off-canvas menu state.
   -->
-  <main class="pt-4">
+  <main class="pt-4 pb-16">
     <%# Header %>
     <div class="flex justify-between mx-auto max-w-2xl px-4 sm:px-6  lg:max-w-7xl  lg:gap-x-8 lg:px-8 lg:pt-16 py-2">
       <h1 class="text-3xl font-medium leading-7 text-gray-900 sm:truncate sm:tracking-tight inline"><%= @property.headline %></h1>
@@ -276,74 +276,8 @@
           </div>
         </div>
       </div>
-      <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-        <!-- Reviews -->
-        <section aria-labelledby="reviews-heading" class="border-t border-gray-200 pt-10 lg:pt-16">
-          <h2 id="reviews-heading" class="sr-only">Reviews</h2>
-          <div class="space-y-10">
-            <% @property.reviews.each do |review| %>
-              <div class="flex flex-col sm:flex-row">
-                <div class="order-2 mt-6 sm:ml-16 sm:mt-0">
-                  <h3 class="text-sm font-medium text-gray-900"><%= review.content %></h3>
-                  <p class="sr-only">5 out of 5 stars</p>
-                  <div class="mt-3 space-y-6 text-sm text-gray-600">
-                    <p>I've searched my entire life for a t-shirt that reflects every color in the visible spectrum. Scientists said it couldn't be done, but when I look at this shirt, I see white light bouncing right back into my eyes. Incredible!</p>
-                  </div>
-                </div>
-                <div class="order-1 flex items-center sm:flex-col sm:items-start">
-                  <img src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixqx=oilqXxSqey&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Mark Edwards." class="h-12 w-12 rounded-full">
-                  <div class="ml-4 sm:ml-0 sm:mt-4">
-                    <p class="text-sm font-medium text-gray-900">Mark Edwards</p>
-                    <div class="mt-2 flex items-center">
-                      <!-- Active: "text-gray-900", Default: "text-gray-200" -->
-                      <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                      </svg>
-                      <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                      </svg>
-                      <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                      </svg>
-                      <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                      </svg>
-                      <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </section>
-      </div>
     </div>
-    <section aria-labelledby="related-products-heading" class="bg-white">
-      <div class="mx-auto max-w-2xl px-4 py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-        <h2 id="related-products-heading" class="text-xl font-bold tracking-tight text-gray-900">Customers also purchased</h2>
-        <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-          <div class="group relative">
-            <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-              <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
-            </div>
-            <div class="mt-4 flex justify-between">
-              <div>
-                <h3 class="text-sm text-gray-700">
-                  <a href="#">
-                    <span aria-hidden="true" class="absolute inset-0"></span>
-                    Basic Tee
-                  </a>
-                </h3>
-                <p class="mt-1 text-sm text-gray-500">Black</p>
-              </div>
-              <p class="text-sm font-medium text-gray-900">$35</p>
-            </div>
-          </div>
-          <!-- More products... -->
-        </div>
-      </div>
-    </section>
+    <!-- Reviews -->
+    <%= render partial: 'properties/reviews', locals: { property: @property } %>
   </main>
 </div>

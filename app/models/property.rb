@@ -25,6 +25,14 @@ class Property < ApplicationRecord
         update_attribute(:average_final_rating, avg);
     end
 
+    def average_cleanliness_rating = reviews.average(:cleanliness_rating).round(1)
+
+    def average_accuracy_rating = reviews.average(:accuracy_rating).round(1)
+    def average_checkin_rating = reviews.average(:checkin_rating).round(1)
+    def average_communication_rating = reviews.average(:communication_rating).round(1)
+    def average_location_rating = reviews.average(:location_rating).round(1)
+    def average_value_rating = reviews.average(:value_rating).round(1)
+
     def wishlisted_by?(user = nil)
         return if user.nil?
         wishlisted_users.include?(user)

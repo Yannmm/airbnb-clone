@@ -13,4 +13,7 @@ class User < ApplicationRecord
 
   has_many :reserved_properties, through: :reservations, source: :property, dependent: :destroy
 
+  validates :name, :address_1, :city, :state, :country, presence: true
+
+  has_one_attached :picture
 end

@@ -8,10 +8,42 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+pictures = []
+
+20.times do 
+    pictures << Faker::LoremFlickr.image
+end
+
 user = User.create!({
     email: 'test1@gmail.com',
-    password: '123456'
+    password: '123456',
+    name: Faker::Lorem.unique.sentence(word_count: 2),
+    address_1: Faker::Address.street_address,
+    address_2: Faker::Address.street_name,
+    city: Faker::Address.city,
+    state: Faker::Address.state,
+    country: Faker::Address.country,
 })
+
+
+downloaded_image = URI.parse(pictures[0]).open
+user.picture.attach(io: downloaded_image, filename: user.name)
+
+19.times do |i|
+    random_user = User.create!({
+    email: "test#{i + 2}@gmail.com",
+    password: '123456',
+    name: Faker::Lorem.unique.sentence(word_count: 2),
+    address_1: Faker::Address.street_address,
+    address_2: Faker::Address.street_name,
+    city: Faker::Address.city,
+    state: Faker::Address.state,
+    country: Faker::Address.country,
+})
+
+    downloaded_image = URI.parse(pictures[i + 1]).open
+    random_user.picture.attach(io: downloaded_image, filename: user.name)
+end
 
 description = <<-DESCIRPTION
 <div>
@@ -42,6 +74,8 @@ The whole house is yours. 4 bedrooms, two bathrooms and a beautiful kitchen and 
 Our Vintage modern A frame has Central AC and heating and will keep you comfortable! Many places up the mountain do not have Air Conditioning. In the summer months it can be very hot. Ours will keep you cool and comfortable.</div>
 </div>
 DESCIRPTION
+
+user_ids = User.all.pluck(:id)
 
 10.times do |i|
     property = Property.create!({
@@ -76,7 +110,7 @@ DESCIRPTION
             location_rating: (1..5).to_a.sample,
             cleanliness_rating: (1..5).to_a.sample,
             property: property,
-            user: user
+            user_id: user_ids.sample
         })
     end
     

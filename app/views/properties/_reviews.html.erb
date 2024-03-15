@@ -144,20 +144,22 @@
             </div>
             <div class="mt-6 sm:mt-0">
               <p class="sr-only">5 out of 5 stars</p>
-              <div class="mt-3 space-y-6 text-sm text-gray-600">
-                <p><%= review.content.truncate(200) %></p>
-                <div class="flex items-center gap-1">
-                  <span class="font-medium underline">
-                    Show more
-                  </span>
-                  <svg 
+              <%= turbo_frame_tag review.id do %>
+                <div class="mt-3 space-y-6 text-sm text-gray-600">
+                  <p><%= review.content.truncate(100) %></p>
+                  <div class="flex items-center gap-1">
+                    <span class="font-medium underline">
+                      <%= link_to 'Show More', reviews_show_more_path(review) %>
+                    </span>
+                    <svg 
                 viewBox="0 0 18 18" 
                 role="presentation" 
                 aria-hidden="true" 
                 focusable="false" 
                 style="height: 12px; width: 12px; display: block; fill: var(--f-k-smk-x);"><path d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z" fill-rule="evenodd"></path></svg>
+                  </div>
                 </div>
-              </div>
+              <% end %>
             </div>
           </div>
         <% end %>

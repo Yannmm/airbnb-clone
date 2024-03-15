@@ -14,4 +14,6 @@ Rails.application.routes.draw do
 
   resources :properties, only: [:show, :index]
 
+  get '/reviews/:id/full', to: 'reviews#show_more', as: 'reviews_show_more'
+
 end

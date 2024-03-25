@@ -14,11 +14,45 @@
 # amenity5.icon.attach(io: File.open("app/assets/images/amenity_icons/essentials.svg"), filename: amenity5.name)
 
 amenity_data = [
-    {name: 'Kitchen', icon: 'kitchen.svg'},
-    {name: 'Private Pool', icon: 'private_pool.svg'},
-    {name: 'Wifi', icon: 'wifi.svg'},
-    {name: 'Parking', icon: 'parking.svg'},
-    {name: 'Essentials', icon: 'essentials.svg', description: 'tooth brush, towel, tooth paste, comb and other stuff'},
+  {name: 'Air conditioning', icon: "air_conditioning.svg"},
+  {name: 'Balcony', icon: "balcony.svg"},
+  {name: 'Bed linen', icon: "bed_linen.svg"},
+  {name: 'Board games', icon: "board_games.svg"},
+  {name: 'Carbon monoxide alarm', icon: "carbon_monoxide_alarm.svg"},
+  {name: 'Coffee maker', icon: "coffee_maker.svg"},
+  {name: 'Cooker', icon: "cooker.svg"},
+  {name: 'Cooking basics', icon: "cooking_basics.svg", description: 'Pots and pans, oil, salt and pepper'},
+  {name: 'Cot', icon: "cot.svg"},
+  {name: 'Dedicated workspace', icon: "dedicated_workspace.svg"},
+  {name: 'Dining table', icon: "dining_table.svg"},
+  {name: 'Dishes and cutlery', icon: "dishes_and_cutlery.svg", description: 'Bowls, chopsticks, plates, cups, etc.'},
+  {name: 'Dishwasher', icon: "dishwasher.svg"},
+  {name: 'Dryer', icon: "dryer.svg"},
+  {name: 'Esssentials', icon: "essentials.svg", description: 'Towels, bed sheets, soap and toilet paper'},
+  {name: 'Fire extinguisher', icon: "fire_extinguisher.svg"},
+  {name: 'First aid kit', icon: "first_aid_kit.svg"},
+  {name: 'Free parking', icon: "free_parking.svg"},
+  {name: 'fridge', icon: "fridge.svg"},
+  {name: 'Garden', icon: "garden.svg", description: 'An open space on the property usually covered in grass'},
+  {name: 'Hair dryer', icon: "hair_dryer.svg"},
+  {name: 'Hangers', icon: "hangers.svg"},
+  {name: 'Heating', icon: "heating.svg"},
+  {name: 'Hot tub', icon: "hot_tub.svg"},
+  {name: 'Hot water', icon: "hot_water.svg"},
+  {name: 'Iron', icon: "iron.svg"},
+  {name: 'Kitchen', icon: "kitchen.svg", description: 'Space where guests can cook their own meals'},
+  {name: 'Lockbox', icon: "lockbox.svg"},
+  {name: 'Microwave', icon: "microwave.svg"},
+  {name: 'Mountain view', icon: "mountain_view.svg"},
+  {name: 'Oven', icon: "oven.svg"},
+  {name: 'Pool table', icon: "pool_table.svg"},
+  {name: 'Private entrance', icon: "private_entrance.svg", description: 'Separate street or building entrance'},
+  {name: 'Private pool', icon: "private_pool.svg" },
+  {name: 'Shampoo', icon: "shampoo.svg"},
+  {name: 'Smoke alarm', icon: "smoke_alarm.svg"},
+  {name: 'TV', icon: "tv.svg"},
+  {name: 'Washing machine', icon: "washing_machine.svg"},
+  {name: 'Wifi', icon: "wifi.svg"},
 ]
 
 amenity_data.each do |data|
@@ -118,8 +152,16 @@ user_ids = User.all.pluck(:id)
     property.images.attach(io: File.open("db/images/property_#{i + 6}.JPG"), filename: "#{property.name}.jpg")
     property.images.attach(io: File.open("db/images/property_#{i + 3}.JPG"), filename: "#{property.name}.jpg")
 
+
     all_amenities = Amenity.all
-    property.amenities << all_amenities.sample((1...all_amenities.count).to_a.sample)
+    amenity_set = Set.new
+    ((10...(all_amenities.count)).to_a.sample).times do 
+        a = all_amenities.sample
+        unless amenity_set.include?(a.id)
+            property.amenities << a 
+            amenity_set << a.id
+        end
+    end
     
     (50..100).to_a.sample.times do 
         Review.create!({ 

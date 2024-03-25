@@ -22,7 +22,7 @@ class Property < ApplicationRecord
     # might work 
     # has_many :amenities, through: :property_amenities, dependent: :destroy
     # since :source can be inferred
-    has_many :amenities, through: :property_amenities, source: :amenity, dependent: :destroy
+    has_many :amenities, through: :property_amenities, dependent: :destroy
 
     has_rich_text :description
 

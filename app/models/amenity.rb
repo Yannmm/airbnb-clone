@@ -8,5 +8,5 @@ class Amenity < ApplicationRecord
     # might work 
     # has_many :properties, through: :property_amenities, dependent: :destroy
     # since :source can be inferred
-    has_many :properties, through: :property_amenities, source: :property, dependent: :destroy
+    has_many :properties, through: :property_amenities, dependent: :destroy
 end

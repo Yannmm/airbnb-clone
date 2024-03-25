@@ -1,0 +1,17 @@
+<div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pr-8">
+  <!-- Description and details -->
+  <div class="border-t border-gray-200 pt-1 mt-4 lg:pt-16">
+    <h2 class="text-xl font-medium leading-6 text-gray-900">What this places offers</h2>
+    <div class="mt-6 grid grid-cols-1 md:grid-cols-2">
+      <% amenities.limit(8).each do |amenity| %>
+        <div class="py-3 flex">
+          <%= image_tag amenity.icon, class: "w-6 h-6" %>
+          <p class="ms-4 font-light"><%= amenity.name %></p>
+        </div>
+      <% end %>
+    </div>
+    <% if amenities.count > 8 %>
+      <button type="button" class="mt-8 rounded-md text-lg bg-white px-4 py-3 font-medium text-gray-900  ring-black ring-2 hover:bg-gray-50">Show all <%= amenities.count %> amenities</button>
+    <% end %>
+  </div>
+</div>

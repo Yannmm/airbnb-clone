@@ -8,6 +8,21 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+amenity1 = Amenity.create!(name: 'Kitchen')
+amenity1.icon.attach(io: File.open("app/assets/images/amenity_icons/kitchen.svg"), filename: amenity1.name)
+
+amenity2 = Amenity.create!(name: 'Private Pool')
+amenity2.icon.attach(io: File.open("app/assets/images/amenity_icons/private_pool.svg"), filename: amenity2.name)
+
+amenity3 = Amenity.create!(name: 'Wifi')
+amenity3.icon.attach(io: File.open("app/assets/images/amenity_icons/wifi.svg"), filename: amenity3.name)
+
+amenity4 = Amenity.create!(name: 'Parking')
+amenity4.icon.attach(io: File.open("app/assets/images/amenity_icons/parking.svg"), filename: amenity4.name)
+
+amenity5 = Amenity.create!(name: 'Essentials', description: Faker::Lorem.unique.sentence(word_count: 9))
+amenity5.icon.attach(io: File.open("app/assets/images/amenity_icons/essentials.svg"), filename: amenity5.name)
+
 pictures = []
 
 20.times do 

@@ -17,6 +17,13 @@ class Property < ApplicationRecord
 
     has_many :reserved_users, through: :reservations, source: :user, dependent: :destroy
 
+    has_many :property_amenities, dependent: :destroy
+
+    # might work 
+    # has_many :amenities, through: :property_amenities, dependent: :destroy
+    # since :source can be inferred
+    has_many :amenities, through: :property_amenities, source: :amenity, dependent: :destroy
+
     has_rich_text :description
 
 

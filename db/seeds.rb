@@ -1,27 +1,30 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+# amenity1 = Amenity.create!(name: 'Kitchen')
+# amenity1.icon.attach(io: File.open("app/assets/images/amenity_icons/kitchen.svg"), filename: amenity1.name)
 
-amenity1 = Amenity.create!(name: 'Kitchen')
-amenity1.icon.attach(io: File.open("app/assets/images/amenity_icons/kitchen.svg"), filename: amenity1.name)
+# amenity2 = Amenity.create!(name: 'Private Pool')
+# amenity2.icon.attach(io: File.open("app/assets/images/amenity_icons/private_pool.svg"), filename: amenity2.name)
 
-amenity2 = Amenity.create!(name: 'Private Pool')
-amenity2.icon.attach(io: File.open("app/assets/images/amenity_icons/private_pool.svg"), filename: amenity2.name)
+# amenity3 = Amenity.create!(name: 'Wifi')
+# amenity3.icon.attach(io: File.open("app/assets/images/amenity_icons/wifi.svg"), filename: amenity3.name)
 
-amenity3 = Amenity.create!(name: 'Wifi')
-amenity3.icon.attach(io: File.open("app/assets/images/amenity_icons/wifi.svg"), filename: amenity3.name)
+# amenity4 = Amenity.create!(name: 'Parking')
+# amenity4.icon.attach(io: File.open("app/assets/images/amenity_icons/parking.svg"), filename: amenity4.name)
 
-amenity4 = Amenity.create!(name: 'Parking')
-amenity4.icon.attach(io: File.open("app/assets/images/amenity_icons/parking.svg"), filename: amenity4.name)
+# amenity5 = Amenity.create!(name: 'Essentials', description: Faker::Lorem.unique.sentence(word_count: 9))
+# amenity5.icon.attach(io: File.open("app/assets/images/amenity_icons/essentials.svg"), filename: amenity5.name)
 
-amenity5 = Amenity.create!(name: 'Essentials', description: Faker::Lorem.unique.sentence(word_count: 9))
-amenity5.icon.attach(io: File.open("app/assets/images/amenity_icons/essentials.svg"), filename: amenity5.name)
+amenity_data = [
+    {name: 'Kitchen', icon: 'kitchen.svg'},
+    {name: 'Private Pool', icon: 'private_pool.svg'},
+    {name: 'Wifi', icon: 'wifi.svg'},
+    {name: 'Parking', icon: 'parking.svg'},
+    {name: 'Essentials', icon: 'essentials.svg', description: 'tooth brush, towel, tooth paste, comb and other stuff'},
+]
+
+amenity_data.each do |data|
+    amenity = Amenity.create!(name: data[:name], description: data[:description])
+    amenity.icon.attach(io: File.open("app/assets/images/amenity_icons/#{data[:icon]}"), filename: amenity.name)
+end
 
 pictures = []
 
@@ -114,6 +117,9 @@ user_ids = User.all.pluck(:id)
     property.images.attach(io: File.open("db/images/property_#{i + 2}.JPG"), filename: "#{property.name}.jpg")
     property.images.attach(io: File.open("db/images/property_#{i + 6}.JPG"), filename: "#{property.name}.jpg")
     property.images.attach(io: File.open("db/images/property_#{i + 3}.JPG"), filename: "#{property.name}.jpg")
+
+    all_amenities = Amenity.all
+    property.amenities << all_amenities.sample((1...all_amenities.count).to_a.sample)
     
     (50..100).to_a.sample.times do 
         Review.create!({ 

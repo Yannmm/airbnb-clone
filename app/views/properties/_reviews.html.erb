@@ -165,8 +165,16 @@
         <% end %>
       </div>
       <% if property.reviews_count > 6 %>
-        <button type="button" class="rounded-md text-lg bg-white px-4 py-3 font-medium text-gray-900  ring-black ring-2 hover:bg-gray-50">Show all reviews</button>
+        <button 
+          data-controller="modal"
+          data-action="click->modal#show"
+          data-where="reviews"
+          type="button" 
+          class="rounded-md text-lg bg-white px-4 py-3 font-medium text-gray-900  ring-black ring-2 hover:bg-gray-50"
+          >Show all reviews</button>
       <% end %>
     </div>
   </section>
 </div>
+<%# below is same as render 'shared/modal', content: "properties/reviews_list", where: "reviews"  %>
+<%= render partial: 'shared/modal', locals: { content: "properties/reviews_list", where: "reviews" } %> 

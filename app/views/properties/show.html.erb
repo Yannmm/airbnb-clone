@@ -16,8 +16,13 @@
           role="presentation" 
           focusable="false" 
           style="display: inline; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 2; overflow: visible;"><g fill="none"><path d="M27 18v9a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-9M16 3v23V3zM6 13l9.3-9.3a1 1 0 0 1 1.4 0L26 13"></path></g></svg>
-          <span class="underline text-sm ms-1">
-            Share</span>
+          <button 
+            data-controller="modal"
+            data-where="share"
+            data-action="click->modal#show"
+            class="underline text-sm ms-1"
+            >
+            Share</button>
         </span>
         <span 
             class="px-3 py-2 pb-3 hover:rounded-md hover:bg-gray-100 cursor-pointer"
@@ -262,9 +267,14 @@
             <!-- TODO: how to determine rich text length? -->
             <% if @property.description.to_plain_text.length > 500 %>
               <div class="flex items-center gap-1">
-                <span class="font-medium underline">
+                <button 
+                  data-controller="modal"
+                  data-action="click->modal#show"
+                  data-where="description"
+                  class="font-medium underline"
+                  >
                   Show more
-                </span>
+                </button>
                 <svg 
                 viewBox="0 0 18 18" 
                 role="presentation" 
@@ -272,6 +282,7 @@
                 focusable="false" 
                 style="height: 12px; width: 12px; display: block; fill: var(--f-k-smk-x);"><path d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z" fill-rule="evenodd"></path></svg>
               </div>
+              <%= render 'shared/modal', content: 'description_detail', where: 'description' %>
             <% end %>
           </div>
         </div>
@@ -283,3 +294,4 @@
     <%= render partial: 'reviews', locals: { property: @property, overall_rating_counts: @overall_rating_counts } %>
   </main>
 </div>
+<%= render 'shared/modal', content: 'share_modal', where: 'share' %>

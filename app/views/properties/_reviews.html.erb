@@ -171,10 +171,10 @@
           data-where="reviews"
           type="button" 
           class="rounded-md text-lg bg-white px-4 py-3 font-medium text-gray-900  ring-black ring-2 hover:bg-gray-50"
-          >Show all reviews</button>
+          >Show all <%= property.reviews_count %> reviews</button>
       <% end %>
     </div>
   </section>
 </div>
 <%# below is same as render 'shared/modal', content: "properties/reviews_list", where: "reviews"  %>
-<%= render partial: 'shared/modal', locals: { content: "properties/reviews_list", where: "reviews" } %> 
+<%= render partial: 'shared/modal', locals: { content: "properties/reviews_list", where: "reviews", content_params: { property: property, overall_rating_counts: overall_rating_counts } } %> 

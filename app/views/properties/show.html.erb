@@ -282,7 +282,7 @@
                 focusable="false" 
                 style="height: 12px; width: 12px; display: block; fill: var(--f-k-smk-x);"><path d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z" fill-rule="evenodd"></path></svg>
               </div>
-              <%= render 'shared/modal', content: 'description_detail', where: 'description' %>
+              <%= render 'shared/modal', content: 'description_detail', where: 'description', content_params: { description: @property.description } %>
             <% end %>
           </div>
         </div>
@@ -294,4 +294,4 @@
     <%= render partial: 'reviews', locals: { property: @property, overall_rating_counts: @overall_rating_counts } %>
   </main>
 </div>
-<%= render 'shared/modal', content: 'share_modal', where: 'share' %>
+<%= render 'shared/modal', content: 'share_modal', where: 'share', content_params: { share: 111 } %>

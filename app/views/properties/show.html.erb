@@ -294,4 +294,4 @@
     <%= render partial: 'reviews', locals: { property: @property, overall_rating_counts: @overall_rating_counts } %>
   </main>
 </div>
-<%= render 'shared/modal', content: 'share_modal', where: 'share', content_params: { share: 111 } %>
+<%= render 'shared/modal', content: 'share_modal', where: 'share', content_params: { property: @property } %>

@@ -49,7 +49,9 @@
               </div>
               <%# TODO: kms based location %>
               <p class="mt-0.5 text-sm text-gray-500"><%= property.available_dates.first.strftime('%e %b') + ' - ' + property.available_dates.last.strftime('%e %b') %></p>
-              <p class="mt-0.5 text-sm font-light text-black"><span class="font-medium"><%= humanized_money_with_symbol property.price %></span> / night</p>
+              <p class="mt-0.5 text-sm font-light text-black">
+                <span class="font-medium"><%= humanized_money_with_symbol property.price %>
+                </span> / night</p>
             </div>
           </div>
         <% end %>

@@ -97,19 +97,34 @@
         </div>
       </div>
       <!-- Booking component -->
-      <div class="mt-4 lg:mt-0 border rounded-xl p-6 shadow-xl h-auto">
+      <div 
+        class="mt-4 lg:mt-0 border rounded-xl p-6 shadow-xl h-auto" data-controller="booking"
+        data-per-night-price="<%= humanized_money @property.price %>"
+      >
         <h2 class="sr-only">Booking Information</h2>
         <p class="text-lg font-light tracking-tight text-gray-900">
           <span class="text-xl font-semibold"><%= humanized_money_with_symbol @property.price %></span> night 
         </p>
         <div class="flex mt-6">
           <div class="rounded-l-lg px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-400 focus-within:ring-2">
-            <label for="name" class="block text-xs font-medium text-gray-900">Name</label>
-            <input type="text" name="name" id="name" class="block w-full border-0 p-0 text-gray-900">
+            <label for="checkin" class="block text-xs font-medium text-gray-900">CHECK-IN</label>
+            <input 
+              type="text" 
+              name="checkin" 
+              id="checkin" 
+              class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
+              placeholder="18/02/4024"
+            >
           </div>
           <div class="rounded-r-lg px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-400 focus-within:ring-2">
-            <label for="name" class="block text-xs font-medium text-gray-900">Name</label>
-            <input type="text" name="name" id="name" class="block w-full border-0 p-0 text-gray-900">
+            <label for="checkout" class="block text-xs font-medium text-gray-900">CHECK-OUT</label>
+            <input 
+              type="text" 
+              name="checkout" 
+              id="checkout" 
+              class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
+              placeholder="26/02/4024"
+            >
           </div>
         </div>
         <button 
@@ -121,12 +136,12 @@
         <p class="font-light text-center text-sm py-4">You won't be charged yet</p>
         <div class="mt-2">
           <div class="flex justify-between font-light">
-            <p>$238 HKD x 5 晚</p>
-            <p>$1,188 HKD</p>
+            <p><%= humanized_money_with_symbol @property.price %> x <span data-booking-target="numberOfNights">1</span> night</p>
+            <p><%= currency_symbol %><span data-booking-target="baseFare">-</span></p>
           </div>
           <div class="flex justify-between font-light mt-4">
             <p>Airbnb service fee</p>
-            <p>$700 HKD</p>
+            <p><%= currency_symbol %><span data-booking-target="serviceFee">-</span></p>
           </div>
         </div>
         <div class="relative py-4">
@@ -136,7 +151,7 @@
         </div>
         <div class="flex justify-between font-medium">
           <p>Total before taxes</p>
-          <p>$1888 HKD</p>
+          <p><%= currency_symbol %><span data-booking-target="totalBeforeTaxes">-</span></p>
         </div>
       </div>
       <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-gray-200 lg:pr-8">

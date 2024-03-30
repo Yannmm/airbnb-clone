@@ -95,6 +95,23 @@ export default class extends Controller {
       this.calculateBaseFare(nightCount) + this.calculateServieFee(nightCount)
     );
   }
+
+  reserve(event) {
+    event.preventDefault();
+
+    const parameters = {
+      checkin_date: "1-04-2024",
+      checkout_date: "8-04-2024",
+    };
+
+    const params = new URLSearchParams(parameters).toString();
+
+    console.log(params);
+
+    const url = event.target.dataset.reservePropertyUrl;
+
+    Turbo.visit(url + "?" + params);
+  }
 }
 
 const SERVICE_FEE = 0.18;

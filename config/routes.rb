@@ -12,7 +12,11 @@ Rails.application.routes.draw do
     resources :wishlists, only: [:create, :destroy]
   end
 
-  resources :properties, only: [:show, :index]
+  resources :properties, only: [:show, :index] do
+    resources :bookings, only: [:new]
+  end
+
+  
 
   get '/reviews/:id/full', to: 'reviews#show_more', as: 'reviews_show_more'
 

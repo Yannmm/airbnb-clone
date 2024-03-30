@@ -135,7 +135,9 @@
         <button 
         type="submit" 
         class="mt-4 flex w-full items-center justify-center rounded-md border border-transparent bg-primary px-8 py-3 text-base font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-        >
+        data-action="click->booking#reserve"
+          data-reserve-property-url=<%= new_property_booking_path(@property) %>
+          >
           Reserve
         </button>
         <p class="font-light text-center text-sm py-4">You won't be charged yet</p>

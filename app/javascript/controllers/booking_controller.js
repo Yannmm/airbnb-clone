@@ -30,9 +30,23 @@ export default class extends Controller {
   }
 
   triggerCheckoutDatePicker(checkinDate) {
+    const start = checkinDate.fp_incr(1);
+    var end = start.fp_incr(30);
+
+    const dates = JSON.parse(this.element.dataset.blockedDates)
+      .flat()
+      .map((e) => new Date(e));
+
+    for (let i = 0; i < dates.length; i++) {
+      const d = dates[i];
+      if (d > start && d < end) {
+        end = d;
+      }
+    }
+
     flatpickr(this.checkoutTarget, {
-      minDate: checkinDate.fp_incr(1),
-      maxDate: new Date().fp_incr(30), // 14 days from now
+      minDate: start,
+      maxDate: end,
       onChange: (selectedDates, dateStr, instance) => {
         this.updateDetails();
       },

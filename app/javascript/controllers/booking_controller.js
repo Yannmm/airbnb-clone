@@ -18,6 +18,12 @@ export default class extends Controller {
       onChange: (selectedDates, dateStr, instance) => {
         this.triggerCheckoutDatePicker(selectedDates[0]);
       },
+      disable: JSON.parse(this.element.dataset.blockedDates).map((e) => {
+        return {
+          from: e[0], // checkin date
+          to: e[1], // checkout date
+        };
+      }),
     });
 
     this.updateDetails();
@@ -30,6 +36,12 @@ export default class extends Controller {
       onChange: (selectedDates, dateStr, instance) => {
         this.updateDetails();
       },
+      disable: JSON.parse(this.element.dataset.blockedDates).map((e) => {
+        return {
+          from: e[0], // checkin date
+          to: e[1], // checkout date
+        };
+      }),
     });
 
     this.checkoutTarget.click();

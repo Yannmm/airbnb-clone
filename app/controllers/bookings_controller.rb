@@ -8,10 +8,10 @@ class BookingsController < ApplicationController
 
 
         # number of nights
-        checkin_date = Date.parse(booking_params[:checkin_date])
-        checkout_date = Date.parse(booking_params[:checkout_date])
+        @checkin_date = Date.parse(booking_params[:checkin_date])
+        @checkout_date = Date.parse(booking_params[:checkout_date])
 
-        @night_count = (checkout_date - checkin_date).to_i
+        @night_count = (@checkout_date - @checkin_date).to_i
 
         # base fare         
         @base_fare = @night_count * @property.price;

@@ -100,13 +100,11 @@ export default class extends Controller {
     event.preventDefault();
 
     const parameters = {
-      checkin_date: "1-04-2024",
-      checkout_date: "8-04-2024",
+      checkin_date: this.checkinTarget.value,
+      checkout_date: this.checkoutTarget.value,
     };
 
     const params = new URLSearchParams(parameters).toString();
-
-    console.log(params);
 
     const url = event.target.dataset.reservePropertyUrl;
 

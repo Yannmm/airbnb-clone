@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :wishlists, only: [:create, :destroy]
   end
 
+  # TODO: check nested resources
   resources :properties, only: [:show, :index] do
     resources :bookings, only: [:new]
   end

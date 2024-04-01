@@ -1,5 +1,7 @@
 class BookingsController < ApplicationController
 
+    before_action :authenticate_user!
+
     SERVICE_FEE = 0.18
 
     def new 

@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     resources :bookings, only: [:new]
   end
 
+  resources :booking_payments, only: [:create]
+
   
 
   get '/reviews/:id/full', to: 'reviews#show_more', as: 'reviews_show_more'

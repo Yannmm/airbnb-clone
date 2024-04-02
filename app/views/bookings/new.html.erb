@@ -11,6 +11,7 @@
       </div>
       <div class="mt-12 pt-12 border-t border-gray-300">
         <h3 class="text-xl font-medium text-gray-900">Pay with</h3>
+        <!-- 尝试不要写key, 传值 -->
         <%= stripe_elements_tag submit_path: booking_payments_path(property_id: @property.id, 
         user_id: current_user.id, 
         checkin_date: @checkin_date, 

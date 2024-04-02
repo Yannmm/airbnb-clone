@@ -17,6 +17,16 @@ class BookingPaymentsController < ApplicationController
     end
 
     def stripe_customer 
-        customer ||= Stripe::Customer.retrieve('')
+        customer ||= if (user.stripe_customer_id.nil?)
+            c = Stripe::Customer.create(
+                name: user.name,
+                email: user.email
+            )
+            user.update(stripe_customer_id: c.id)
+            c
+        else
+            customer ||= Stripe::Customer.retrieve(user.stripe_customer_id)
+        end
+        
     end
 end

@@ -12,15 +12,14 @@ Rails.application.routes.draw do
     resources :wishlists, only: [:create, :destroy]
   end
 
-  # TODO: check nested resources
   resources :properties, only: [:show, :index] do
     resources :bookings, only: [:new]
   end
 
   resources :booking_payments, only: [:create]
 
-  
-
   get '/reviews/:id/full', to: 'reviews#show_more', as: 'reviews_show_more'
+
+  get "booking_payments/success", to: "booking_payments#success"
 
 end

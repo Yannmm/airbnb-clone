@@ -1,32 +1,36 @@
 class BookingPaymentsController < ApplicationController
     def create
-        raise
+        property = Property.find(booking_payments_params[:property_id])
+        stripe_price = Stripe::Price.create({
+            currency: 'usd',
+            unit_amount: Money.from_amount(BigDecimal(booking_payments_params[:total_before_taxes])).cents,
+            product_data: { name: property.name },
+        })
+
+        success_url = url_for(controller: 'booking_payments', action: 'success', only_path: false)
+
+        stripe_session = Stripe::Checkout::Session.create({
+            success_url: success_url,
+            line_items: [
+              {
+                price: stripe_price.id,
+                quantity: 1,
+              },
+            ],
+            mode: 'payment',
+          })
+
+          redirect_to stripe_session.url, allow_other_host: true, status: 303
+    end
+
+    def success
+        # Add reservation 
+        # Add payment details offline
+
     end
 
     private 
     def booking_payments_params
-        params.permit(:property_id, :user_id, :checkin_date, :checkout_date, :sercie_fee, :base_fare, :total_before_taxes, :stripeToken)
-    end
-
-    def user
-        user ||= User.find(booking_payments_params[:user_id])
-    end
-
-    def property
-        property = Property.find(booking_payments_params[:property_id])
-    end
-
-    def stripe_customer 
-        customer ||= if (user.stripe_customer_id.nil?)
-            c = Stripe::Customer.create(
-                name: user.name,
-                email: user.email
-            )
-            user.update(stripe_customer_id: c.id)
-            c
-        else
-            customer ||= Stripe::Customer.retrieve(user.stripe_customer_id)
-        end
-        
+        params.permit(:property_id, :user_id, :checkin_date, :checkout_date, :service_fee, :base_fare, :total_before_taxes, :stripeToken)
     end
 end

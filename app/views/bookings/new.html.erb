@@ -10,17 +10,6 @@
         </div>
       </div>
       <div class="mt-12 pt-12 border-t border-gray-300">
-        <h3 class="text-xl font-medium text-gray-900">Pay with</h3>
-        <!-- 尝试不要写key, 传值 -->
-        <%= stripe_elements_tag submit_path: booking_payments_path(property_id: @property.id, 
-        user_id: current_user.id, 
-        checkin_date: @checkin_date, 
-        checkout_date: @checkout_date, 
-        base_fare: @base_fare, 
-        service_fee: @service_fee, 
-        total_before_taxes: @total_before_taxes) %>
-      </div>
-      <div class="mt-12 pt-12 border-t border-gray-300">
         <h3 class="text-xl font-medium text-gray-900">Ground rules</h3>
         <p class="mt-6 font-light">We ask every gutest to remember a few simple things about what makes a great guest</p>
         <ul class="font-light list-disc ms-4 mt-4">
@@ -32,12 +21,15 @@
           </li>
         </ul>
       </div>
-      <button 
-        type="submit" 
-        class="mt-12 flex w-full items-center justify-center rounded-md border border-transparent bg-primary px-8 py-3 text-base font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-        >
-        Confirm and pay
-      </button>
+      <%= form_with url: booking_payments_path(property_id:   @property.id, 
+        user_id: current_user.id, 
+        checkin_date: @checkin_date, 
+        checkout_date: @checkout_date, 
+        base_fare: @base_fare, 
+        service_fee: @service_fee, 
+        total_before_taxes: @total_before_taxes), method: :post do |form| %>
+        <%= form.submit 'Confirm and pay', class: "mt-12 flex w-full items-center justify-center rounded-md border border-transparent bg-primary px-8 py-3 text-base font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2", data: { turbo: false } %>
+      <% end %>
     </div>
     <!-- Booking component -->
     <div 

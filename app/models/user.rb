@@ -16,4 +16,6 @@ class User < ApplicationRecord
   validates :name, :address_1, :city, :state, :country, presence: true
 
   has_one_attached :picture
+
+  has_many :payments, through: :reservations, source: :payment, dependent: :destroy
 end

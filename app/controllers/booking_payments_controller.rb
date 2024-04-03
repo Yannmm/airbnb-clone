@@ -7,7 +7,7 @@ class BookingPaymentsController < ApplicationController
             product_data: { name: property.name },
         })
 
-        success_url = url_for(controller: 'booking_payments', action: 'success', only_path: false)
+        success_url = url_for(controller: 'booking_payments', action: 'success', only_path: false, booking_params: booking_payments_params.except(:stripeToken))
 
         stripe_session = Stripe::Checkout::Session.create({
             success_url: success_url,
@@ -24,12 +24,30 @@ class BookingPaymentsController < ApplicationController
     end
 
     def success
-        # Add reservation 
+        # Revisiting will this controller will lose booking_payments_params
+
+        # Add reservation
+        reservation = Reservation.create!(user_id: success_params[:user_id], property_id: success_params[:property_id], checkin_date: success_params[:checkin_date], checkout_date: success_params[:checkout_date]);
+
         # Add payment details offline
 
+        payment = Payment.create!(
+            reservation_id: reservation.id, 
+            base_fare: Money.from_amount(BigDecimal(success_params[:base_fare])).cents, 
+            service_fee: Money.from_amount(BigDecimal(success_params[:service_fee])).cents, 
+            total_before_taxes: Money.from_amount(BigDecimal(success_params[:total_before_taxes])).cents)
+
+        # TODO: redirect to all bookings page
+
+        redirect_to root_path
     end
 
+
     private 
+    def success_params
+        params.require(:booking_params)
+    end
+
     def booking_payments_params
         params.permit(:property_id, :user_id, :checkin_date, :checkout_date, :service_fee, :base_fare, :total_before_taxes, :stripeToken)
     end

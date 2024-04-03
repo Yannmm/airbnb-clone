@@ -12,6 +12,9 @@ Rails.application.routes.draw do
     resources :wishlists, only: [:create, :destroy]
   end
 
+  # TODO: how about singualr resource
+  resources :wishlists, only: [:index]
+
   resources :properties, only: [:show, :index] do
     resources :bookings, only: [:new]
   end
@@ -22,4 +25,7 @@ Rails.application.routes.draw do
 
   get "booking_payments/success", to: "booking_payments#success"
 
+  
+
+  
 end

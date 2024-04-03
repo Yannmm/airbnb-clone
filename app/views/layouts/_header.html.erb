@@ -79,7 +79,7 @@
             data-transition-leave-end="transform opacity-0 scale-95">
             <!-- Active: "bg-gray-100", Not Active: "" -->
             <% if user_signed_in? %>
-              <%= link_to 'Wishlist', "#", class: "block px-4 py-2 text-sm text-gray-700", role: "menuitem", tabindex: "-1", id: "user-menu-item-0" %>
+              <%= link_to 'Wishlist', wishlists_path, class: "block px-4 py-2 text-sm text-gray-700", role: "menuitem", tabindex: "-1", id: "user-menu-item-0" %>
               <%= link_to 'Log out', destroy_user_session_path, class: "block px-4 py-2 text-sm text-gray-700", role: "menuitem", tabindex: "-1", id: "user-menu-item-0", data: { turbo_method: :delete } %>
             <% else %>
               <%= link_to 'Log in', new_user_session_path, class: "js-login block px-4 py-2 text-sm text-gray-700", role: "menuitem", tabindex: "-1" %>

@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   get "booking_payments/success", to: "booking_payments#success"
 
-  
+  resources :profiles, only: [:show]
 
   
 end

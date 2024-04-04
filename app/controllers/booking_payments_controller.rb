@@ -33,9 +33,9 @@ class BookingPaymentsController < ApplicationController
 
         payment = Payment.create!(
             reservation_id: reservation.id, 
-            base_fare: Money.from_amount(BigDecimal(success_params[:base_fare])).cents, 
-            service_fee: Money.from_amount(BigDecimal(success_params[:service_fee])).cents, 
-            total_before_taxes: Money.from_amount(BigDecimal(success_params[:total_before_taxes])).cents)
+            base_fare_cents: Money.from_amount(BigDecimal(success_params[:base_fare])).cents, 
+            service_fee_cents: Money.from_amount(BigDecimal(success_params[:service_fee])).cents, 
+            total_before_taxes_cents: Money.from_amount(BigDecimal(success_params[:total_before_taxes])).cents)
 
         # TODO: redirect to all bookings page
 

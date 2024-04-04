@@ -13,7 +13,7 @@ class Property < ApplicationRecord
     # To use :wishlisted_users, you have to define :wishlists association first
     has_many :wishlisted_users, through: :wishlists, source: :user, dependent: :destroy
 
-    has_many :reservations, dependent: :destroy
+    has_many :reservations, -> { order('checkin_date ASC') }, dependent: :destroy
 
     has_many :reserved_users, through: :reservations, source: :user, dependent: :destroy
 

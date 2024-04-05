@@ -74,6 +74,7 @@
     </div>
     <!-- Property info -->
     <div class="mx-auto max-w-2xl px-4 pt-8 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pt-8">
+      <!-- Name + Description -->
       <div class="lg:col-span-2  lg:border-gray-200 lg:pr-8">
         <h2 class="text-xl font-medium leading-6 text-gray-900 sm:truncate"><%= @property.name + "," + @property.country %></h2>
         <div class="mt-1 font-light">
@@ -95,10 +96,37 @@
             <span class="font-medium"><%= @property.average_final_rating.round(2) %>  ·  <span class="underline"><%= @property.reviews_count %> reviews</span></span>
           <% end %>
         </div>
+        <!-- Description and details -->
+        <div class="border-t border-gray-200 pt-1 mt-4 lg:pt-16">
+          <h3 class="sr-only">Description</h3>
+          <div class="space-y-6">
+            <p class="text-base text-gray-900"><%= @property.description %></p>
+            <!-- TODO: how to determine rich text length? -->
+            <% if @property.description.to_plain_text.length > 500 %>
+              <div class="flex items-center gap-1">
+                <button 
+                  data-controller="modal"
+                  data-action="click->modal#show"
+                  data-where="description"
+                  class="font-medium underline"
+                  >
+                  Show more
+                </button>
+                <svg 
+                viewBox="0 0 18 18" 
+                role="presentation" 
+                aria-hidden="true" 
+                focusable="false" 
+                style="height: 12px; width: 12px; display: block; fill: var(--f-k-smk-x);"><path d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z" fill-rule="evenodd"></path></svg>
+              </div>
+              <%= render 'shared/modal', content: 'description_detail', where: 'description', content_params: { description: @property.description } %>
+            <% end %>
+          </div>
+        </div>
       </div>
       <!-- Booking component -->
       <div 
-        class="mt-4 lg:mt-0 border rounded-xl p-6 shadow-xl h-auto" data-controller="booking"
+        class="mt-4 lg:mt-0 border rounded-xl p-6 shadow-xl h-min" data-controller="booking"
         data-per-night-price="<%= humanized_money @property.price %>"
         data-blocked-dates="<%= @blocked_dates %>"
       >
@@ -159,35 +187,6 @@
         <div class="flex justify-between font-medium">
           <p>Total before taxes</p>
           <p><%= currency_symbol %><span data-booking-target="totalBeforeTaxes">-</span></p>
-        </div>
-      </div>
-      <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-gray-200 lg:pr-8">
-        <!-- Description and details -->
-        <div class="border-t border-gray-200 pt-1 mt-4 lg:pt-16">
-          <h3 class="sr-only">Description</h3>
-          <div class="space-y-6">
-            <p class="text-base text-gray-900"><%= @property.description %></p>
-            <!-- TODO: how to determine rich text length? -->
-            <% if @property.description.to_plain_text.length > 500 %>
-              <div class="flex items-center gap-1">
-                <button 
-                  data-controller="modal"
-                  data-action="click->modal#show"
-                  data-where="description"
-                  class="font-medium underline"
-                  >
-                  Show more
-                </button>
-                <svg 
-                viewBox="0 0 18 18" 
-                role="presentation" 
-                aria-hidden="true" 
-                focusable="false" 
-                style="height: 12px; width: 12px; display: block; fill: var(--f-k-smk-x);"><path d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z" fill-rule="evenodd"></path></svg>
-              </div>
-              <%= render 'shared/modal', content: 'description_detail', where: 'description', content_params: { description: @property.description } %>
-            <% end %>
-          </div>
         </div>
       </div>
       <!-- Amenities -->

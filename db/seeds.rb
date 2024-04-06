@@ -1,18 +1,3 @@
-# amenity1 = Amenity.create!(name: 'Kitchen')
-# amenity1.icon.attach(io: File.open("app/assets/images/amenity_icons/kitchen.svg"), filename: amenity1.name)
-
-# amenity2 = Amenity.create!(name: 'Private Pool')
-# amenity2.icon.attach(io: File.open("app/assets/images/amenity_icons/private_pool.svg"), filename: amenity2.name)
-
-# amenity3 = Amenity.create!(name: 'Wifi')
-# amenity3.icon.attach(io: File.open("app/assets/images/amenity_icons/wifi.svg"), filename: amenity3.name)
-
-# amenity4 = Amenity.create!(name: 'Parking')
-# amenity4.icon.attach(io: File.open("app/assets/images/amenity_icons/parking.svg"), filename: amenity4.name)
-
-# amenity5 = Amenity.create!(name: 'Essentials', description: Faker::Lorem.unique.sentence(word_count: 9))
-# amenity5.icon.attach(io: File.open("app/assets/images/amenity_icons/essentials.svg"), filename: amenity5.name)
-
 amenity_data = [
   {name: 'Air conditioning', icon: "amenity_icons/air_conditioning.svg"},
   {name: 'Balcony', icon: "amenity_icons/balcony.svg"},
@@ -68,32 +53,44 @@ end
 user = User.create!({
     email: 'test1@gmail.com',
     password: '123456',
+
+})
+
+profile = Profile.create!(
+
+    user_id: user.id,
     name: Faker::Lorem.unique.sentence(word_count: 2),
     address_1: Faker::Address.street_address,
     address_2: Faker::Address.street_name,
     city: Faker::Address.city,
     state: Faker::Address.state,
     country: Faker::Address.country,
-})
 
+)
 
 downloaded_image = URI.parse(pictures[0]).open
-user.picture.attach(io: downloaded_image, filename: user.name)
+profile.picture.attach(io: downloaded_image, filename: profile.name)
 
 19.times do |i|
     random_user = User.create!({
     email: "test#{i + 2}@gmail.com",
     password: '123456',
+})
+
+profile = Profile.create!(
+ {
+    user_id: random_user.id,
     name: Faker::Lorem.unique.sentence(word_count: 2),
     address_1: Faker::Address.street_address,
     address_2: Faker::Address.street_name,
     city: Faker::Address.city,
     state: Faker::Address.state,
     country: Faker::Address.country,
-})
+ }
+)
 
     downloaded_image = URI.parse(pictures[i + 1]).open
-    random_user.picture.attach(io: downloaded_image, filename: user.name)
+    profile.picture.attach(io: downloaded_image, filename: profile.name)
 end
 
 description = <<-DESCIRPTION

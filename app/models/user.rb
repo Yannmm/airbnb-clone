@@ -13,9 +13,15 @@ class User < ApplicationRecord
 
   has_many :reserved_properties, through: :reservations, source: :property, dependent: :destroy
 
-  validates :name, :address_1, :city, :state, :country, presence: true
-
-  has_one_attached :picture
-
   has_many :payments, through: :reservations, source: :payment, dependent: :destroy
+
+  has_one :profile, dependent: :destroy
+
+  after_create :create_profile
+
+  private 
+  def create_profile
+    self.profile = Profile.new
+    self.save!
+  end
 end

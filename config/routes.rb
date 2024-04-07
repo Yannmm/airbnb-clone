@@ -32,10 +32,10 @@ Rails.application.routes.draw do
 
   get "booking_payments/success", to: "booking_payments#success"
 
-  # resources :profiles, only: [:show]
-
   resource :profile, only: [:show]
   resolve('Profile') { [:profile] }
 
-  resources :reservations, only: [:index]
+  resources :reservations, only: [:index] do 
+    resources :reviews, only: [:new]
+  end
 end

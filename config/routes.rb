@@ -36,6 +36,6 @@ Rails.application.routes.draw do
   resolve('Profile') { [:profile] }
 
   resources :reservations, only: [:index] do 
-    resources :reviews, only: [:new]
+    resources :reviews, only: [:new, :create]
   end
 end

@@ -8,7 +8,12 @@ class ReviewsController < ApplicationController
   end
 
   def create
-
+    @review = Review.new(review_params)
+    if @review.save
+      redirect_to root_path, notice: "Review added successfully."
+    else
+      redirect_back fallback_location: root_path, alert: "Failed to add review."
+    end
   end
 
   def index
@@ -17,7 +22,7 @@ class ReviewsController < ApplicationController
   private
   def review_params 
     params.permit(
-      :reservation_id, 
+      :property_id,
       :user_id, 
       :content, 
       :cleanliness_rating, 

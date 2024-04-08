@@ -25,6 +25,21 @@
           <div class="w-full border-t border-gray-300"></div>
         </div>
       </div>
+      <%= form_with url: reservation_reviews_path(@reservation) do |form|  %>
+        <!-- form_with pass hidden valus? -->
+        <%= form.hidden_field :user_id, value: current_user.id %>
+        <%= form.hidden_field :property_id, value: @reservation.property.id %>
+        <!-- <%= form.label :content %>
+        <%= form.text_field :content %> -->
+        <%= form.hidden_field :content, value: 'this is good content' %>
+        <%= form.hidden_field :cleanliness_rating, value: 1 %>
+        <%= form.hidden_field :accuracy_rating, value: 2 %>
+        <%= form.hidden_field :checkin_rating, value: 3 %>
+        <%= form.hidden_field :communication_rating, value: 4 %>
+        <%= form.hidden_field :location_rating, value: 5 %>
+        <%= form.hidden_field :value_rating, value: 3 %>
+        <%= form.submit "Create" %>
+      <% end %>
     </div>
   </main>
 </div>

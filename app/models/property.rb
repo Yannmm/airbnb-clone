@@ -5,7 +5,7 @@ class Property < ApplicationRecord
 
     has_many_attached :images
 
-    has_many :reviews, dependent: :destroy
+    has_many :reviews, -> { order('updated_at DESC') }, dependent: :destroy
 
     has_many :wishlists, dependent: :destroy
 

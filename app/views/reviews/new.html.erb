@@ -25,117 +25,25 @@
           <div class="w-full border-t border-gray-300"></div>
         </div>
       </div>
-      <%= form_with url: reservation_reviews_path(@reservation) do |form|  %>
-        <%= form.hidden_field :user_id, value: current_user.id %>
-        <%= form.hidden_field :property_id, value: @reservation.property.id %>
-        <div class="flex flex-col py-4">
-          <%= form.label :content %>
-          <%= form.text_area :content %>
-        </div>
-        <div data-controller="rating">
+      <div class="max-w-96">
+        <%= form_with url: reservation_reviews_path(@reservation) do |form|  %>
+          <%= form.hidden_field :user_id, value: current_user.id %>
+          <%= form.hidden_field :property_id, value: @reservation.property.id %>
           <div class="flex flex-col py-4">
-            <%= form.label :cleanliness_rating %>
-            <div class="flex ">
-              <%= form.hidden_field :cleanliness_rating %>
-              <% 5.times do |i| %>
-                <svg 
-                data-rating=<%= i + 1 %>
-                data-action="click->rating#setRating"
-                  class="fill-gray-200 h-6 w-6 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
-                  >
-                  <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                </svg>
-              <% end %>
-            </div>
+            <%= form.label :content %>
+            <%= form.text_area :content %>
           </div>
-        </div>
-        <div data-controller="rating">
-          <div class="flex flex-col py-4">
-            <%= form.label :accuracy_rating %>
-            <div class="flex">
-              <%= form.hidden_field :accuracy_rating %>
-              <% 5.times do |i| %>
-                <svg 
-                data-rating=<%= i + 1 %>
-                data-action="click->rating#setRating"
-                  class="fill-gray-200 h-6 w-6 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
-                  >
-                  <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                </svg>
-              <% end %>
-            </div>
+          <div>
+            <%= render 'reviews/rating_item', field: :cleanliness_rating, form: form %>
+            <%= render 'reviews/rating_item', field: :accuracy_rating, form: form %>
+            <%= render 'reviews/rating_item', field: :checkin_rating, form: form %>
+            <%= render 'reviews/rating_item', field: :communication_rating, form: form %>
+            <%= render 'reviews/rating_item', field: :location_rating, form: form %>
+            <%= render 'reviews/rating_item', field: :value_rating, form: form %>
           </div>
-        </div>
-        <div data-controller="rating">
-          <div class="flex flex-col py-4">
-            <%= form.label :checkin_rating %>
-            <div class="flex">
-              <%= form.hidden_field :checkin_rating %>
-              <% 5.times do |i| %>
-                <svg 
-                data-rating=<%= i + 1 %>
-                data-action="click->rating#setRating"
-                  class="fill-gray-200 h-6 w-6 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
-                  >
-                  <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                </svg>
-              <% end %>
-            </div>
-          </div>
-        </div>
-        <div data-controller="rating">
-          <div class="flex flex-col py-4">
-            <%= form.label :communication_rating %>
-            <div class="flex ">
-              <%= form.hidden_field :communication_rating %>
-              <% 5.times do |i| %>
-                <svg 
-                data-rating=<%= i + 1 %>
-                data-action="click->rating#setRating"
-                  class="fill-gray-200 h-6 w-6 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
-                  >
-                  <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                </svg>
-              <% end %>
-            </div>
-          </div>
-        </div>
-        <div data-controller="rating">
-          <div class="flex flex-col py-4">
-            <%= form.label :location_rating %>
-            <div class="flex">
-              <%= form.hidden_field :location_rating %>
-              <% 5.times do |i| %>
-                <svg 
-                data-rating=<%= i + 1 %>
-                data-action="click->rating#setRating"
-                  class="fill-gray-200 h-6 w-6 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
-                  >
-                  <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                </svg>
-              <% end %>
-            </div>
-          </div>
-        </div>
-        <div data-controller="rating">
-          <div class="flex flex-col py-4">
-            <%= form.label :value_rating %>
-            <div class="flex">
-              <%= form.hidden_field :value_rating %>
-              <% 5.times do |i| %>
-                <svg 
-                data-rating=<%= i + 1 %>
-                data-action="click->rating#setRating"
-                  class="fill-gray-200 h-6 w-6 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
-                  >
-                  <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                </svg>
-              <% end %>
-            </div>
-          </div>
-        </div>
-        <%= form.submit "Submit" %>
-      <% end %>
+          <%= form.submit "Submit", class: "cursor-pointer mt-4 flex items-center justify-center rounded-md border border-transparent bg-primary px-8 py-3 text-base font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" %>
+        <% end %>
+      </div>
     </div>
   </main>
 </div>

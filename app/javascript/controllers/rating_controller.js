@@ -19,11 +19,11 @@ export default class extends Controller {
     // fill-gray-200
     for (let i = 1; i <= 5; i++) {
       const svg = star.parentNode.querySelector(`svg[data-rating="${i}"]`);
-      svg.classList.remove("fill-gray-800");
+      svg.classList.remove("fill-amber-300");
       svg.classList.remove("fill-gray-200");
 
       svg.classList.add(
-        i <= Number(rating) ? "fill-gray-800" : "fill-gray-200"
+        i <= Number(rating) ? "fill-amber-300" : "fill-gray-200"
       );
     }
 

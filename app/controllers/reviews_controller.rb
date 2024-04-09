@@ -1,14 +1,17 @@
 class ReviewsController < ApplicationController
+  before_action :set_reservation, only: [:new, :create]
+
   def show_more
     @review = Review.find(params[:id])
   end
 
   def new
-    @reservation = Reservation.find(params[:reservation_id])
+    
   end
 
   def create
-    @review = Review.new(review_params)
+    #  @review = Review.new(review_params.merge(user_id: current_user.id, property_id: reservation.property_id))
+    @review = current_user.reviews.build(**review_params, user_id: current_user.id, property_id: @reservation.property_id)
     if @review.save
       redirect_to root_path, notice: "Review added successfully."
     else
@@ -20,10 +23,12 @@ class ReviewsController < ApplicationController
   end
 
   private
+  def set_reservation
+    @reservation = Reservation.find(params[:reservation_id])
+  end
+
   def review_params 
     params.permit(
-      :property_id,
-      :user_id, 
       :content, 
       :cleanliness_rating, 
       :accuracy_rating, 

@@ -17,6 +17,8 @@ class User < ApplicationRecord
 
   has_one :profile, dependent: :destroy
 
+  has_many :reviews, dependent: :destroy
+
   after_create :create_profile
 
   private 

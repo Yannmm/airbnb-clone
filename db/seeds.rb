@@ -159,19 +159,19 @@ user_ids = User.all.pluck(:id)
         end
     end
     
-    (50..100).to_a.sample.times do 
-        Review.create!({ 
-            content: Faker::Lorem.paragraph(sentence_count: 10),
-            communication_rating: (1..5).to_a.sample,
-            accuracy_rating: (1..5).to_a.sample,
-            checkin_rating: (1..5).to_a.sample,
-            value_rating: (1..5).to_a.sample,
-            location_rating: (1..5).to_a.sample,
-            cleanliness_rating: (1..5).to_a.sample,
-            property: property,
-            user_id: user_ids.sample
-        })
-    end
+    # (50..100).to_a.sample.times do 
+    #     Review.create!({ 
+    #         content: Faker::Lorem.paragraph(sentence_count: 10),
+    #         communication_rating: (1..5).to_a.sample,
+    #         accuracy_rating: (1..5).to_a.sample,
+    #         checkin_rating: (1..5).to_a.sample,
+    #         value_rating: (1..5).to_a.sample,
+    #         location_rating: (1..5).to_a.sample,
+    #         cleanliness_rating: (1..5).to_a.sample,
+    #         property: property,
+    #         user_id: user_ids.sample
+    #     })
+    # end
     
 end
 

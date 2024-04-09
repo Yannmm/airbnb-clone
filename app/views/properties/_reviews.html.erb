@@ -183,5 +183,7 @@
       </div>
     </section>
   </div>
-  <%# below is same as render 'shared/modal', content: "properties/reviews_list", where: "reviews"  %>
-  <%= render partial: 'shared/modal', locals: { content: "properties/reviews_list", where: "reviews", content_params: { property: property, overall_rating_counts: overall_rating_counts } } %> 
+  <% if property.reviews_count > 0 %>
+    <%# below is same as render 'shared/modal', content: "properties/reviews_list", where: "reviews"  %>
+    <%= render partial: 'shared/modal', locals: { content: "properties/reviews_list", where: "reviews", content_params: { property: property, overall_rating_counts: overall_rating_counts } } %>
+  <% end %>

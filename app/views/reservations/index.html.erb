@@ -1,4 +1,4 @@
-<div class="mx-auto max-w-7xl lg:flex lg:gap-x-16 px-8">
+<div class="px-8 mx-auto max-w-7xl lg:flex lg:gap-x-16">
   <%= render partial: 'shared/profile_sidebar' %>
   <main class="my-8 lg:flex-auto">
     <div>
@@ -6,30 +6,28 @@
     </div>
     <div class="flex flex-col">
       <% @reservations.each do |reservation| %>
-        <div class="mt-4 border border-gray-300 rounded-xl p-6 h-min">
+        <div class="p-6 mt-4 border border-gray-300 rounded-xl h-min">
           <div class="flex justify-between">
             <div class="flex items-center">
               <%= image_tag reservation.property.images[0], class:"w-24 h-24 object-cover rounded-md"%>
-              <div class="ml-3 text-black font-medium">
+              <div class="ml-3 font-medium text-black">
                 <div>
                   <%= reservation.property.name %> - <%= reservation.property.city %>, <%= reservation.property.state %>
                 </div>
-                <span class="inline-flex items-center pointer-events-none block text-sm font-medium text-black mt-2">
+                <span class="flex items-baseline mt-2 text-sm font-medium text-black pointer-events-none">
                   <svg class="mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 12px; width: 12px; fill: currentcolor;">
                     <path fill-rule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path>
                   </svg>
                   <% if reservation.property.reviews_count > 0 %>
                     <%= reservation.property.average_final_rating.round(2) %> (<%= reservation.property.reviews_count %> reviews)
                   <% else %>
-                    New
+                    <span class="text-sm font-light">New</span>
                   <% end %>
                 </span>
               </div>
             </div>
             <% if reservation.review.nil? %>
-              <%= button_to "Add Review", new_reservation_review_path(reservation), method: :get, class: "mt-4 flex w-full items-center justify-center rounded-md border border-transparent bg-primary px-8 py-3 text-base font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" %>
-            <% else %>
-              <p><%= reservation.review.content %>(<%= reservation.review.final_rating.round(2) %>)</p>
+              <%= button_to "Add Review", new_reservation_review_path(reservation), method: :get, class: "flex-1 text-nowrap mt-4 rounded-md border border-transparent bg-primary px-8 py-3 text-base font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" %>
             <% end %>
           </div>
           <div class="relative py-4">
@@ -37,13 +35,23 @@
               <div class="w-full border-t border-gray-300"></div>
             </div>
           </div>
+          <!-- my review if there is any -->
+          <% if reservation.review.present? %>
+            <p class="text-base font-normal"><span>My review: </span> "<%= reservation.review.content %>"</p>
+            <div class="relative py-4">
+              <div class="absolute inset-0 flex items-center">
+                <div class="w-full border-t border-gray-300"></div>
+              </div>
+            </div>
+          <% end %>
+          <!-- price details -->
           <div class="py-6">
             <h3 class="text-xl font-medium text-gray-900">Price details</h3>
-            <div class="flex justify-between font-light mt-4">
+            <div class="flex justify-between mt-4 font-light">
               <p><%= humanized_money_with_symbol reservation.property.price %> x <span ><%= (reservation.checkout_date - reservation.checkin_date).to_i %></span> <%= "night".pluralize((reservation.checkout_date - reservation.checkin_date).to_i) %></p>
               <p><span ><%= humanized_money_with_symbol reservation.payment.base_fare %></span></p>
             </div>
-            <div class="flex justify-between font-light mt-4">
+            <div class="flex justify-between mt-4 font-light">
               <p>Airbnb service fee</p>
               <p><span ><%= humanized_money_with_symbol(reservation.payment.service_fee) %></span></p>
             </div>
@@ -53,9 +61,10 @@
               <div class="w-full border-t border-gray-300"></div>
             </div>
           </div>
+          <!-- trip details -->
           <div class="py-6">
             <h3 class="text-xl font-medium text-gray-900">Trip details</h3>
-            <div class="flex justify-between font-light mt-4">
+            <div class="flex justify-between mt-4 font-light">
               <p>Dates</p>
               <p><%= reservation.checkin_date %> ~ <%= reservation.checkout_date %></p>
             </div>

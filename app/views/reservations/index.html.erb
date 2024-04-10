@@ -26,7 +26,11 @@
                 </span>
               </div>
             </div>
-            <%= button_to "Add Review", new_reservation_review_path(reservation), method: :get, class: "mt-4 flex w-full items-center justify-center rounded-md border border-transparent bg-primary px-8 py-3 text-base font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" %>
+            <% if reservation.review.nil? %>
+              <%= button_to "Add Review", new_reservation_review_path(reservation), method: :get, class: "mt-4 flex w-full items-center justify-center rounded-md border border-transparent bg-primary px-8 py-3 text-base font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" %>
+            <% else %>
+              <p><%= reservation.review.content %>(<%= reservation.review.final_rating.round(2) %>)</p>
+            <% end %>
           </div>
           <div class="relative py-4">
             <div class="absolute inset-0 flex items-center">

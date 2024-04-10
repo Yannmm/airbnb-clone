@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
 
   def create
     #  @review = Review.new(review_params.merge(user_id: current_user.id, property_id: reservation.property_id))
-    @review = current_user.reviews.build(**review_params, user_id: current_user.id, property_id: @reservation.property_id)
+    @review = current_user.reviews.build(**review_params, property_id: @reservation.property_id, reservation_id: @reservation.id)
     if @review.save
       redirect_to root_path, notice: "Review added successfully."
     else

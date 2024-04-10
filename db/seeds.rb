@@ -56,20 +56,16 @@ user = User.create!({
 
 })
 
-profile = Profile.create!(
-
-    user_id: user.id,
-    name: Faker::Lorem.unique.sentence(word_count: 2),
-    address_1: Faker::Address.street_address,
-    address_2: Faker::Address.street_name,
-    city: Faker::Address.city,
-    state: Faker::Address.state,
-    country: Faker::Address.country,
-
-)
+user.profile.update(    
+name: Faker::Lorem.unique.sentence(word_count: 2),
+address_1: Faker::Address.street_address,
+address_2: Faker::Address.street_name,
+city: Faker::Address.city,
+state: Faker::Address.state,
+country: Faker::Address.country,)
 
 downloaded_image = URI.parse(pictures[0]).open
-profile.picture.attach(io: downloaded_image, filename: profile.name)
+user.profile.picture.attach(io: downloaded_image, filename: user.profile.name)
 
 19.times do |i|
     random_user = User.create!({
@@ -77,20 +73,29 @@ profile.picture.attach(io: downloaded_image, filename: profile.name)
     password: '123456',
 })
 
-profile = Profile.create!(
- {
-    user_id: random_user.id,
+# profile = Profile.create!(
+#  {
+#     user_id: random_user.id,
+    # name: Faker::Lorem.unique.sentence(word_count: 2),
+    # address_1: Faker::Address.street_address,
+    # address_2: Faker::Address.street_name,
+    # city: Faker::Address.city,
+    # state: Faker::Address.state,
+    # country: Faker::Address.country,
+#  }
+# )
+
+random_user.profile.update(
     name: Faker::Lorem.unique.sentence(word_count: 2),
     address_1: Faker::Address.street_address,
     address_2: Faker::Address.street_name,
     city: Faker::Address.city,
     state: Faker::Address.state,
     country: Faker::Address.country,
- }
 )
 
     downloaded_image = URI.parse(pictures[i + 1]).open
-    profile.picture.attach(io: downloaded_image, filename: profile.name)
+    random_user.profile.picture.attach(io: downloaded_image, filename: random_user.profile.name)
 end
 
 description = <<-DESCIRPTION

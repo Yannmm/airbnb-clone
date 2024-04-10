@@ -19,11 +19,13 @@ class User < ApplicationRecord
 
   has_many :reviews, dependent: :destroy
 
-  after_create :create_profile
+  after_create :create_profile_if_necessary
 
   private 
-  def create_profile
-    self.profile = Profile.new
-    self.save!
+  def create_profile_if_necessary
+    if self.profile.nil?
+      self.profile = Profile.new
+      self.save!
+    end
   end
 end

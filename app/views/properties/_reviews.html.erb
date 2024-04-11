@@ -140,7 +140,7 @@
               <!-- commenter name  -->
               <div>
                 <p class="text-base font-medium text-gray-900 ms-4"><%= review.user.profile.name || review.user.email %></p>
-                <p class="text-xs font-light text-gray-900 ms-4"><%= review.user.profile.city %>, <%= review.user.profile.country %></p>
+                <p class="text-xs font-light text-gray-900 ms-4"><%= review.user.profile.city %>, <%= country_name review.user.profile.country_code %></p>
               </div>
             </div>
             <div>

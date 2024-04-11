@@ -16,16 +16,9 @@
           <%= form.text_field :last_name, class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6" %>
         </div>
         <div class="sm:col-span-3 sm:col-start-1">
-          <!-- <label for="country" class="text-sm font-medium leading-6 text-gray-900">Country</label>
-          <div class="mt-2">
-            <select id="country" name="country" autocomplete="country-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:max-w-xs sm:text-sm sm:leading-6">
-              <option>United States</option>
-              <option>Canada</option>
-              <option>Mexico</option>
-            </select>
-          </div> -->
-          <%= form.label :country, class: "text-sm font-medium leading-6 text-gray-900" %>
-          <%= form.text_field :country, class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6" %>
+          <%= form.label :country_code, class: "text-sm font-medium leading-6 text-gray-900" %>
+          <!-- <%= form.country_select :country_code, html_options = {class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6"} %> -->
+          <%= country_select(:profile, :country_code, {}, { class: 'form-control mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6' }) %>
         </div>
         <div class="sm:col-span-3 sm:col-start-1">
           <%= form.label :address_1, class: "text-sm font-medium leading-6 text-gray-900" %>
@@ -47,7 +40,7 @@
           <%= form.label :zip_code, 'ZIP / Postal Code', class: "text-sm font-medium leading-6 text-gray-900" %>
           <%= form.text_field :zip_code, class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6" %>
         </div>
-        <%= form.submit 'Update', class: "mt-12 flex w-full items-center justify-center rounded-md border border-transparent bg-primary px-8 py-3 text-base font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" %>
+        <%= form.submit 'Update', class: "mt-12 flex w-full items-center justify-center rounded-md border border-transparent bg-primary px-8 cursor-pointer py-3 text-base font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" %>
       <% end %>
     </div>
   </main>

@@ -64,7 +64,7 @@ address_1: Faker::Address.street_address,
 address_2: Faker::Address.street_name,
 city: Faker::Address.city,
 state: Faker::Address.state,
-country: Faker::Address.country,)
+country_code: Faker::Address.country_code,)
 
 downloaded_image = URI.parse(pictures[0]).open
 user.profile.picture.attach(io: downloaded_image, filename: user.profile.name)
@@ -95,7 +95,7 @@ random_user.profile.update(
     address_2: Faker::Address.street_name,
     city: Faker::Address.city,
     state: Faker::Address.state,
-    country: Faker::Address.country,
+    country_code: Faker::Address.country_code,
 )
 
     downloaded_image = URI.parse(pictures[i + 1]).open
@@ -143,7 +143,7 @@ user_ids = User.all.pluck(:id)
         address_2: Faker::Address.street_name,
         city: Faker::Address.city,
         state: Faker::Address.state,
-        country: Faker::Address.country,
+        country_code: Faker::Address.country_code,
         bedroom_count: (1..5).to_a.sample,
         guest_count: (2..20).to_a.sample,
         bed_count: (4..10).to_a.sample,

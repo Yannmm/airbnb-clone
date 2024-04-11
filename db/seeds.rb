@@ -57,7 +57,9 @@ user = User.create!({
 })
 
 user.profile.update(    
-name: Faker::Lorem.unique.sentence(word_count: 2),
+first_name: Faker::Name.first_name,
+last_name: Faker::Name.last_name,
+zip_code: Faker::Address.zip_code,
 address_1: Faker::Address.street_address,
 address_2: Faker::Address.street_name,
 city: Faker::Address.city,
@@ -86,7 +88,9 @@ user.profile.picture.attach(io: downloaded_image, filename: user.profile.name)
 # )
 
 random_user.profile.update(
-    name: Faker::Lorem.unique.sentence(word_count: 2),
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    zip_code: Faker::Address.zip_code,
     address_1: Faker::Address.street_address,
     address_2: Faker::Address.street_name,
     city: Faker::Address.city,

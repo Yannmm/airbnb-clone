@@ -35,10 +35,14 @@
     </script>
   </head>
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
     <% if controller_name != 'registrations' && controller_name != 'sessions' %>
       <%= render 'layouts/header' %>
+    <% end %>
+    <% if flash[:notice].present? %>
+      <%= render "shared/notice", content: flash[:notice] %>
+    <% end %>
+    <% if flash[:alert].present? %>
+      <%= render 'shared/alert', content: flash[:alert] %>
     <% end %>
     <%= yield %>
   </body>

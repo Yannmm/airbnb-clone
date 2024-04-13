@@ -10,7 +10,7 @@ class PasswordsController < ApplicationController
         if @user.update_with_password(user_params)
             redirect_to root_path, notice: 'Password updated successfully.'
         else
-            # redirect_to edit_password_path, alert: 'Fail to edit Password.'
+            flash.now[:alert] = 'Oops, something wrong happened.'
             render :edit, status: :unprocessable_entity
         end
     end
@@ -18,7 +18,6 @@ class PasswordsController < ApplicationController
     private 
 
     def user_params
-        # TODO: how to double check password?
         params.require(:user).permit(:password, :password_confirmation, :current_password)
     end
 

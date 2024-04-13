@@ -7,9 +7,24 @@
       <p class="mt-8 text-sm font-medium leading-6 text-gray-900">Email: <span><%= current_user.email %></span></p>
       <!-- TODO: insert form_with here -->
       <%= form_with model: current_user, url: password_path, class: "grid grid-cols-1 mt-10 gap-x-6 gap-y-8 sm:grid-cols-6" do |form| %>
-        <div class="sm:col-span-3">
+        <% if form.object.errors.any? %>
+          <div class="sm:col-span-full">
+            <p class= "text-sm font-medium leading-6 text-red-500">
+              <%= form.object.errors.full_messages.join(", ") %>
+            </p>
+          </div>
+        <% end %>
+        <div class="sm:col-span-4">
           <%= form.label :password, class: "text-sm font-medium leading-6 text-gray-900" %>
-          <%= form.password_field :password, class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6" %>
+          <%= form.password_field :password, class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6", autocomplete: "off" %>
+        </div>
+        <div class="sm:col-span-4">
+          <%= form.label :password_confirmation, class: "text-sm font-medium leading-6 text-gray-900" %>
+          <%= form.password_field :password_confirmation, class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6", autocomplete: "off" %>
+        </div>
+        <div class="sm:col-span-4">
+          <%= form.label :current_passsword, class: "text-sm font-medium leading-6 text-gray-900" %> <i>(we need your current password to confirm your changes)</i>
+          <%= form.password_field :current_password, class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6", autocomplete: "off" %>
         </div>
         <%= form.submit 'Update', class: "col-start-1 mt-12 flex w-full items-center justify-center rounded-md border border-transparent bg-primary px-8 cursor-pointer py-3 text-base font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" %>
       <% end %>

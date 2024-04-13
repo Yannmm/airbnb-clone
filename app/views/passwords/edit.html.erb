@@ -4,9 +4,9 @@
     <div>
       <h2 class="text-base font-semibold leading-7 text-gray-900">Personal Information</h2>
       <p class="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can receive mail.</p>
-      <p class="mt-8 text-sm font-medium leading-6 text-gray-900">Email: <span><%= current_user.email %></span></p>
+      <p class="mt-8 text-sm font-medium leading-6 text-gray-900">Email: <span><%= @user.email %></span></p>
       <!-- TODO: insert form_with here -->
-      <%= form_with model: current_user, url: password_path, class: "grid grid-cols-1 mt-10 gap-x-6 gap-y-8 sm:grid-cols-6" do |form| %>
+      <%= form_with model: @user, url: password_path, class: "grid grid-cols-1 mt-10 gap-x-6 gap-y-8 sm:grid-cols-6" do |form| %>
         <% if form.object.errors.any? %>
           <div class="sm:col-span-full">
             <p class= "text-sm font-medium leading-6 text-red-500">

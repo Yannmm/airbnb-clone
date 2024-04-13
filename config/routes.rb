@@ -35,6 +35,12 @@ Rails.application.routes.draw do
   resource :profile, only: [:edit, :update]
   resolve('Profile') { [:profile] }
 
+  resource :email, only: [:edit, :update]
+  resolve('Email') { [:email] }
+
+  resource :password, only: [:edit, :update]
+  resolve('Password') { [:password] }
+
   resources :reservations, only: [:index] do 
     resources :reviews, only: [:new, :create]
   end

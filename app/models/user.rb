@@ -19,6 +19,8 @@ class User < ApplicationRecord
 
   has_many :reviews, dependent: :destroy
 
+  has_many :properties, dependent: :destroy
+
   after_create :create_profile_if_necessary
 
   private 

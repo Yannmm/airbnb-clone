@@ -26,6 +26,8 @@ class Property < ApplicationRecord
     # since :source can be inferred
     has_many :amenities, through: :property_amenities, dependent: :destroy
 
+    belongs_to :user
+
     has_rich_text :description
 
 

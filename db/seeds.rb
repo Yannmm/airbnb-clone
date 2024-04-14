@@ -149,6 +149,7 @@ user_ids = User.all.pluck(:id)
         bed_count: (4..10).to_a.sample,
         bathroom_count: (1..4).to_a.sample,
         price: Money::from_amount((50..100).to_a.sample, 'USD'),
+        user_id: user_ids.sample
     })
 
     property.images.attach(io: File.open("db/images/property_#{i + 1}.JPG"), filename: "#{property.name}.jpg")

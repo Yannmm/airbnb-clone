@@ -44,4 +44,10 @@ Rails.application.routes.draw do
   resources :reservations, only: [:index] do 
     resources :reviews, only: [:new, :create]
   end
+
+  namespace :owner do 
+    resource :dashboard, only: [:show]
+    resources :reservations, only: [:index]
+    resources :properties
+  end
 end

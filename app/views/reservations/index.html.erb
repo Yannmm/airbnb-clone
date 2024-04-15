@@ -7,7 +7,7 @@
     <div class="flex flex-col">
       <% @reservations.each do |reservation| %>
         <div class="p-6 mt-4 border border-gray-300 rounded-xl h-min">
-          <div class="flex justify-between">
+          <div class="flex justify-between gap-x-4">
             <div class="flex items-center">
               <%= image_tag reservation.property.images[0], class:"w-24 h-24 object-cover rounded-md"%>
               <div class="ml-3 font-medium text-black">

@@ -62,8 +62,12 @@
           <div class="py-6">
             <h3 class="text-xl font-medium text-gray-900">Trip details</h3>
             <div class="flex justify-between mt-4 font-light">
+              <p>Booked by</p>
+              <p class="font-medium"><%= reservation.user.profile.name %>&nbsp(<%= reservation.user.email %>)</p>
+            </div>
+            <div class="flex justify-between mt-4 font-light">
               <p>Dates</p>
-              <p><%= reservation.checkin_date %> ~ <%= reservation.checkout_date %></p>
+              <p class="font-medium"><%= reservation.checkin_date %> ~ <%= reservation.checkout_date %></p>
             </div>
           </div>
           <div class="relative py-4">

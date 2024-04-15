@@ -1,1 +1,48 @@
-this is property edit page
+<div class="mx-auto max-w-7xl lg:flex lg:gap-x-16 lg:px-8">
+  <%= render partial: 'shared/owner_sidebar' %>
+  <main class="px-8 py-8 my-8 border rounded-md lg:flex-auto">
+    <div>
+      <h2 class="text-base font-semibold leading-7 text-gray-900">Edit Property</h2>
+      <!-- TODO: insert form_with here -->
+      <%= form_with model: @property, class: "grid grid-cols-1 mt-10 gap-x-6 gap-y-8 sm:grid-cols-6" do |form| %>
+        <div class="flex items-center sm:col-span-full gap-x-4">
+          <%= form.label :picture do %>
+            <!-- TODO: fix this card -->
+            <%= image_tag @property.images[0], class: "h-24 w-24 rounded-full object-cover" %>
+          <% end %>
+          <%= form.file_field :picture, class: "" %>
+        </div>
+        <div class="sm:col-start-1 sm:col-span-4">
+          <%= form.label :name, class: "text-sm font-medium leading-6 text-gray-900" %>
+          <%= form.text_field :name, class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6" %>
+        </div>
+        <div class="sm:col-span-3 sm:col-start-1">
+          <%= form.label :country_code, class: "text-sm font-medium leading-6 text-gray-900" %>
+          <!-- <%= form.country_select :country_code, html_options = {class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6"} %> -->
+          <%= country_select(:profile, :country_code, {}, { class: 'form-control mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6' }) %>
+        </div>
+        <div class="sm:col-span-full">
+          <%= form.label :address_1, class: "text-sm font-medium leading-6 text-gray-900" %>
+          <%= form.text_field :address_1, class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6" %>
+        </div>
+        <div class="sm:col-span-full">
+          <%= form.label :address_2, class: "text-sm font-medium leading-6 text-gray-900" %>
+          <%= form.text_field :address_2, class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6" %>
+        </div>
+        <div class="sm:col-span-2 sm:col-start-1">
+          <%= form.label :city, class: "text-sm font-medium leading-6 text-gray-900" %>
+          <%= form.text_field :city, class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6" %>
+        </div>
+        <div class="sm:col-span-2">
+          <%= form.label :state, 'State / Province', class: "text-sm font-medium leading-6 text-gray-900" %>
+          <%= form.text_field :state, class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6" %>
+        </div>
+        <div class="sm:col-span-2">
+          <%= form.label :zip_code, 'ZIP / Postal Code', class: "text-sm font-medium leading-6 text-gray-900" %>
+          <%= form.text_field :zip_code, class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6" %>
+        </div>
+        <%= form.submit 'Update', class: "mt-12 flex w-full items-center justify-center rounded-md border border-transparent bg-primary px-8 cursor-pointer py-3 text-base font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" %>
+      <% end %>
+    </div>
+  </main>
+</div>

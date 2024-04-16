@@ -4,7 +4,7 @@ module Owner
 
         before_action :set_user
 
-        before_action :set_property, only: [:edit, :update]
+        before_action :set_property, only: [:edit, :update, :update_amenities]
         
         def index 
             @properties = @user.properties
@@ -29,6 +29,17 @@ module Owner
             end
         end
 
+        def update_amenities
+            amenity_ids = amenities_params[:property].select { |k, v| v.to_i > 0 }.to_h.collect { |k, v| k.to_i }
+            amenities = Amenity.where(id: amenity_ids)
+            @property.amenities.delete_all
+            raise
+            @property.amenities << Amenity.where(id: amenity_ids)
+            # 1. cache amenities
+            # 2. done update if amenities does not change
+            redirect_to root_path, notice: "Update amenities of property #{@property.id} successfully."
+        end
+
         private 
 
         def set_user 
@@ -41,6 +52,10 @@ module Owner
 
         def property_params 
             params.require(:property).permit(:name, :headline, :address_1, :address_2, :city, :state, :country_code, :price, :guest_count, :bedroom_count, :bed_count, :bathroom_count)
+        end
+
+        def amenities_params
+            params.permit(property: {})
         end
     end
 end

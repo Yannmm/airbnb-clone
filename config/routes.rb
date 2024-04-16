@@ -30,7 +30,7 @@ Rails.application.routes.draw do
 
   get '/reviews/:id/full', to: 'reviews#show_more', as: 'reviews_show_more'
 
-  get "booking_payments/success", to: "booking_payments#success"
+  get "/booking_payments/success", to: "booking_payments#success"
 
   resource :profile, only: [:edit, :update]
   resolve('Profile') { [:profile] }
@@ -49,5 +49,7 @@ Rails.application.routes.draw do
     resource :dashboard, only: [:show]
     resources :reservations, only: [:index]
     resources :properties
+
+    post "/properties/:id/update_amenities", to: "properties#update_amenities", as: 'update_property_amenities'
   end
 end

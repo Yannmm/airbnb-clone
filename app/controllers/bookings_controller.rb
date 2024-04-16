@@ -23,6 +23,8 @@ class BookingsController < ApplicationController
 
         # total amount
         @total_before_taxes = @base_fare + @service_fee 
+
+        @unit_price = @property.price
     end
 
     private 

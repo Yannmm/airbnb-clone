@@ -6,4 +6,6 @@ class Payment < ApplicationRecord
   monetize :service_fee_cents, allow_nil: false
 
   monetize :total_before_taxes_cents, allow_nil: false
+
+  monetize :unit_price_cents, allow_nil: false
 end

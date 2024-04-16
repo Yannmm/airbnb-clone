@@ -1,48 +1,114 @@
 <div class="mx-auto max-w-7xl lg:flex lg:gap-x-16 lg:px-8">
   <%= render partial: 'shared/owner_sidebar' %>
-  <main class="px-8 py-8 my-8 border rounded-md lg:flex-auto">
-    <div>
-      <h2 class="text-base font-semibold leading-7 text-gray-900">Edit Property</h2>
-      <!-- TODO: insert form_with here -->
-      <%= form_with model: @property, class: "grid grid-cols-1 mt-10 gap-x-6 gap-y-8 sm:grid-cols-6" do |form| %>
-        <div class="flex items-center sm:col-span-full gap-x-4">
-          <%= form.label :picture do %>
-            <!-- TODO: fix this card -->
-            <%= image_tag @property.images[0], class: "h-24 w-24 rounded-full object-cover" %>
-          <% end %>
-          <%= form.file_field :picture, class: "" %>
-        </div>
-        <div class="sm:col-start-1 sm:col-span-4">
-          <%= form.label :name, class: "text-sm font-medium leading-6 text-gray-900" %>
-          <%= form.text_field :name, class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6" %>
-        </div>
-        <div class="sm:col-span-3 sm:col-start-1">
-          <%= form.label :country_code, class: "text-sm font-medium leading-6 text-gray-900" %>
-          <!-- <%= form.country_select :country_code, html_options = {class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6"} %> -->
-          <%= country_select(:profile, :country_code, {}, { class: 'form-control mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6' }) %>
-        </div>
-        <div class="sm:col-span-full">
-          <%= form.label :address_1, class: "text-sm font-medium leading-6 text-gray-900" %>
-          <%= form.text_field :address_1, class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6" %>
-        </div>
-        <div class="sm:col-span-full">
-          <%= form.label :address_2, class: "text-sm font-medium leading-6 text-gray-900" %>
-          <%= form.text_field :address_2, class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6" %>
-        </div>
-        <div class="sm:col-span-2 sm:col-start-1">
-          <%= form.label :city, class: "text-sm font-medium leading-6 text-gray-900" %>
-          <%= form.text_field :city, class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6" %>
-        </div>
-        <div class="sm:col-span-2">
-          <%= form.label :state, 'State / Province', class: "text-sm font-medium leading-6 text-gray-900" %>
-          <%= form.text_field :state, class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6" %>
-        </div>
-        <div class="sm:col-span-2">
-          <%= form.label :zip_code, 'ZIP / Postal Code', class: "text-sm font-medium leading-6 text-gray-900" %>
-          <%= form.text_field :zip_code, class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6" %>
-        </div>
-        <%= form.submit 'Update', class: "mt-12 flex w-full items-center justify-center rounded-md border border-transparent bg-primary px-8 cursor-pointer py-3 text-base font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" %>
-      <% end %>
+  <main>
+    <!-- Property info -->
+    <div class="px-8 py-8 my-8 border rounded-md lg:flex-auto">
+      <div>
+        <h2 class="text-base font-semibold leading-7 text-gray-900">Edit Property</h2>
+        <!-- TODO: insert form_with here -->
+        <%= form_with model: @property, url: owner_property_path, class: "grid grid-cols-1 mt-10 gap-x-6 gap-y-8 sm:grid-cols-6" do |form| %>
+          <div class="flex items-center sm:col-span-full gap-x-6">
+            <%= form.label :picture do %>
+              <!-- TODO: fix this card -->
+              <%= image_tag @property.images[0], class: "h-24 w-24 rounded-full object-cover" %>
+            <% end %>
+            <%= form.file_field :picture, class: "" %>
+          </div>
+          <!-- Name -->
+          <div class="sm:col-start-1 sm:col-span-4">
+            <%= form.label :name, class: "text-sm font-medium leading-6 text-gray-900" %>
+            <%= form.text_field :name, class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6" %>
+          </div>
+          <!-- Headline -->
+          <div class="sm:col-start-1 sm:col-span-full">
+            <%= form.label :headline, class: "text-sm font-medium leading-6 text-gray-900" %>
+            <%= form.text_field :headline, class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6" %>
+          </div>
+          <!-- Description -->
+          <div class="sm:col-start-1 sm:col-span-full">
+            <%= form.label :description, class: "text-sm font-medium leading-6 text-gray-900" %>
+            <%= form.text_area :description, rows: 10, class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6" %>
+          </div>
+          <!-- Price -->
+          <div class="sm:col-start-1 sm:col-span-full">
+            <%= form.label :price, class: "text-sm font-medium leading-6 text-gray-900" do %>
+              Price (<%= @property.price.currency.to_s %>)
+            <% end %>
+            <%= form.text_field :price, class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6" %>
+          </div>
+          <!-- Guest count -->
+          <div class="sm:col-span-1 sm:col-start-1">
+            <%= form.label :guest_count, class: "text-sm font-medium leading-6 text-gray-900" %>
+            <%= form.select :guest_count, (1..20).to_a, { include_blank: false }, { class: 'form-control mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6' } %>
+          </div>
+          <!-- Bedroom count -->
+          <div class="sm:col-span-1">
+            <%= form.label :bedroom_count, class: "text-sm font-medium leading-6 text-gray-900" %>
+            <%= form.select :bedroom_count, (1..10).to_a, { include_blank: false }, { class: 'form-control mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6' } %>
+          </div>
+          <!-- Bed count -->
+          <div class="sm:col-span-1">
+            <%= form.label :bed_count, class: "text-sm font-medium leading-6 text-gray-900" %>
+            <%= form.select :bed_count, (1..10).to_a, { include_blank: false }, { class: 'form-control mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6' } %>
+          </div>
+          <!-- Bathroom count -->
+          <div class="sm:col-span-1">
+            <%= form.label :bathroom_count, class: "text-sm font-medium leading-6 text-gray-900" %>
+            <%= form.select :bathroom_count, (1..10).to_a, { include_blank: false }, { class: 'form-control mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6' } %>
+          </div>
+          <div class="sm:col-span-full">
+            <%= form.label :address_1, class: "text-sm font-medium leading-6 text-gray-900" %>
+            <%= form.text_field :address_1, class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6" %>
+          </div>
+          <div class="sm:col-span-full">
+            <%= form.label :address_2, class: "text-sm font-medium leading-6 text-gray-900" %>
+            <%= form.text_field :address_2, class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6" %>
+          </div>
+          <!-- Country code -->
+          <div class="sm:col-span-2 sm:col-start-1">
+            <%= form.label :country_code, class: "text-sm font-medium leading-6 text-gray-900" %>
+            <%= country_select(:profile, :country_code, {}, { class: 'form-control mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6' }) %>
+          </div>
+          <div class="sm:col-span-2">
+            <%= form.label :city, class: "text-sm font-medium leading-6 text-gray-900" %>
+            <%= form.text_field :city, class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6" %>
+          </div>
+          <div class="sm:col-span-2">
+            <%= form.label :state, 'State / Province', class: "text-sm font-medium leading-6 text-gray-900" %>
+            <%= form.text_field :state, class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6" %>
+          </div>
+          <%= form.submit 'Update', class: "mt-12 flex w-full items-center justify-center rounded-md border border-transparent bg-primary px-8 cursor-pointer py-3 text-base font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" %>
+        <% end %>
+      </div>
+    </div>
+    <!-- Amenities info -->
+    <div class="px-8 py-8 my-8 border rounded-md lg:flex-auto">
+      <div>
+        <h2 class="text-base font-semibold leading-7 text-gray-900">Edit Amenities</h2>
+        <!-- TODO: insert form_with here -->
+        <%= form_with model: @property, url: owner_property_path do |form| %>
+          <fieldset class="mt-10">
+            <legend class="sr-only">Amenities</legend>
+            <div class="grid grid-cols-1 sm:grid-cols-2">
+              <% Amenity.all.each do |amenity| %>
+                <div class="flex items-center py-3">
+                  <div class="relative flex items-start">
+                    <div class="flex items-center h-6">
+                      <input id=<%= amenity.name %> name=<%= amenity.name %> type="checkbox" class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-600">
+                    </div>
+                    <div class="flex items-center justify-between ml-3 text-sm leading-6">
+                      <label for=<%= amenity.name %> class="flex font-medium text-gray-900"><%= image_tag amenity.icon, class: "w-6 h-6" %>
+                        <p class="font-light ms-4"><%= amenity.name %></p>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </fieldset>
+          <%= form.submit 'Update', class: "mt-12 flex w-full items-center justify-center rounded-md border border-transparent bg-primary px-8 cursor-pointer py-3 text-base font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" %>
+        <% end %>
+      </div>
     </div>
   </main>
 </div>

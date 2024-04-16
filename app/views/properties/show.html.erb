@@ -7,7 +7,7 @@
   <main class="pt-4 pb-16">
     <%# Header %>
     <div class="flex justify-between max-w-2xl px-4 py-2 mx-auto sm:px-6 lg:max-w-7xl lg:gap-x-8 lg:px-8 lg:pt-16">
-      <h1 class="inline text-3xl font-medium leading-7 text-gray-900 sm:truncate sm:tracking-tight"><%= @property.headline %></h1>
+      <h1 class="inline text-3xl font-medium leading-7 text-gray-900 "><%= @property.headline %></h1>
       <div class="space-x-1">
         <span class="px-3 py-2 pb-3 cursor-pointer hover:rounded-md hover:bg-gray-100">
           <svg xmlns="http://www.w3.org/2000/svg" 
@@ -78,8 +78,8 @@
       <div class="lg:col-span-2 lg:border-gray-200 lg:pr-8">
         <div class="flex items-center justify-between">
           <div>
-            <h2 class="text-xl font-medium leading-6 text-gray-900 sm:truncate"><%= @property.name + "," + country_name(@property.country_code) %></h2>
-            <div class="mt-1 font-light">
+            <h2 class="text-xl font-medium leading-6 text-gray-900 sm:truncate"><%= @property.name %>&nbsp<span class="font-light text-gray-600"><%= @property.city + "," + country_name(@property.country_code) %></span></h2>
+            <div class="mt-1 font-ligh">
               <!-- TODO: plural and singular -->
               <%= @property.guest_count %> guests · <%= @property.bedroom_count %> bedrooms · <%= @property.bed_count %> beds · <%= @property.bathroom_count %> bathrooms
             </div>
@@ -100,7 +100,7 @@
             </div>
           </div>
           <p>
-            <span class="text-base font-light text-gray-600">Owned by </span>
+            <span class="text-base font-light text-gray-600">Hosted by </span>
             <span class="text-base font-medium text-gray-900"><%= @property.user.profile.name || @property.user.email %></span>
           </p>
         </div>

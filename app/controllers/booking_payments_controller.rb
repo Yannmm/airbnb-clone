@@ -35,7 +35,9 @@ class BookingPaymentsController < ApplicationController
             reservation_id: reservation.id, 
             base_fare_cents: Money.from_amount(BigDecimal(success_params[:base_fare])).cents, 
             service_fee_cents: Money.from_amount(BigDecimal(success_params[:service_fee])).cents, 
-            total_before_taxes_cents: Money.from_amount(BigDecimal(success_params[:total_before_taxes])).cents)
+            total_before_taxes_cents: Money.from_amount(BigDecimal(success_params[:total_before_taxes])).cents,
+            unit_price_cents: Money.from_amount(BigDecimal(success_params[:unit_price])).cents, 
+            )
 
         # TODO: redirect to all bookings page
 
@@ -49,6 +51,6 @@ class BookingPaymentsController < ApplicationController
     end
 
     def booking_payments_params
-        params.permit(:property_id, :user_id, :checkin_date, :checkout_date, :service_fee, :base_fare, :total_before_taxes, :stripeToken)
+        params.permit(:property_id, :user_id, :checkin_date, :checkout_date, :service_fee, :base_fare, :total_before_taxes, :stripeToken, :unit_price)
     end
 end

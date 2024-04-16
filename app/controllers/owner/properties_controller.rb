@@ -13,11 +13,20 @@ module Owner
         def new 
         end
 
+        def create
+        end
+
         def edit 
             
         end
 
         def update 
+            if @property.update(property_params)
+                redirect_to root_path, notice: "Update property #{@property.id} successfully."
+            else
+                flash.now[:alert] = 'Failed to update property.'
+                render :edit, status: :unprocessable_entity
+            end
         end
 
         private 
@@ -28,6 +37,10 @@ module Owner
 
         def set_property
             @property = current_user.properties.find(params[:id])
+        end
+
+        def property_params 
+            params.require(:property).permit(:name, :headline, :address_1, :address_2, :city, :state, :country_code, :price, :guest_count, :bedroom_count, :bed_count, :bathroom_count)
         end
     end
 end

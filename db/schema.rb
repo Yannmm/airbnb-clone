@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_14_121615) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_16_051758) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -70,6 +70,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_14_121615) do
     t.string "service_fee_currency"
     t.integer "total_before_taxes_cents"
     t.string "total_before_taxes_currency"
+    t.integer "unit_price_cents"
+    t.string "unit_price_currency"
     t.index ["reservation_id"], name: "index_payments_on_reservation_id"
   end
 

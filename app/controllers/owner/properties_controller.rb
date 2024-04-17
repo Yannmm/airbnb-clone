@@ -31,12 +31,18 @@ module Owner
 
         def update_amenities
             amenity_ids = amenities_params[:property].select { |k, v| v.to_i > 0 }.to_h.collect { |k, v| k.to_i }
-            amenities = Amenity.where(id: amenity_ids)
+            ids = @property.amenity_ids.push(amenity_ids).flatten.uniq!
+
             @property.amenities.delete_all
-            raise
-            @property.amenities << Amenity.where(id: amenity_ids)
-            # 1. cache amenities
-            # 2. done update if amenities does not change
+
+            ids.each do |id|
+                @property.property_amenities.create(amenity_id: id)
+            end
+
+
+            
+
+
             redirect_to root_path, notice: "Update amenities of property #{@property.id} successfully."
         end
 
@@ -48,6 +54,8 @@ module Owner
 
         def set_property
             @property = current_user.properties.find(params[:id])
+            @amenity_ids = @property.amenity_ids
+
         end
 
         def property_params 

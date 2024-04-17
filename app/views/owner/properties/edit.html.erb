@@ -92,7 +92,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-4">
               <% Amenity.all.each do |amenity| %>
                 <div class="flex items-center">
-                  <%= form.check_box amenity.id, checked: @property.amenities.include?(amenity), class: "w-4 h-4 border-gray-300 rounded text-primary focus:text-primary-dark" %>
+                  <%= form.check_box amenity.id, checked: @amenity_ids.include?(amenity.id), class: "w-4 h-4 border-gray-300 rounded text-primary focus:text-primary-dark" %>
                   <%= form.label amenity.id, class: "flex items-center justify-between ml-3 text-sm leading-6" do  %>
                     <%= image_tag amenity.icon, class: "w-6 h-6" %>
                     <p class="font-light ms-4"><%= amenity.name %></p>

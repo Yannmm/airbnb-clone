@@ -4,7 +4,7 @@ module Owner
 
         before_action :set_user
 
-        before_action :set_property, only: [:edit, :update, :update_amenities]
+        before_action :set_property, only: [:edit, :update, :furnish]
         
         def index 
             @properties = @user.properties
@@ -29,13 +29,20 @@ module Owner
             end
         end
 
-        def update_amenities
-            amenity_ids = amenities_params[:property].select { |k, v| v.to_i > 0 }.to_h.collect { |k, v| k.to_i }
-            ids = @property.amenity_ids.push(amenity_ids).flatten.uniq!
+        def furnish
 
+            amenity_ids = amenities_params[:amenity_ids].select { |e| e != "" }.collect { |e| e.to_i }
+            a1 = @property.amenity_ids
+            
+            a2 = a1.push(amenity_ids).flatten
+
+            # FIXME: why uniq! will make a3 nil?
+            # a3 = a2.uniq!
+
+            # raise
             @property.amenities.delete_all
 
-            ids.each do |id|
+            a2.each do |id|
                 @property.property_amenities.create(amenity_id: id)
             end
 
@@ -54,8 +61,6 @@ module Owner
 
         def set_property
             @property = current_user.properties.find(params[:id])
-            @amenity_ids = @property.amenity_ids
-
         end
 
         def property_params 
@@ -63,7 +68,7 @@ module Owner
         end
 
         def amenities_params
-            params.permit(property: {})
+            params.require(:property).permit(amenity_ids: [])
         end
     end
 end

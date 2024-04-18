@@ -47,9 +47,11 @@ Rails.application.routes.draw do
 
   namespace :owner do 
     resource :dashboard, only: [:show]
-    resources :reservations, only: [:index]
-    resources :properties
 
-    post "/properties/:id/update_amenities", to: "properties#update_amenities", as: 'update_property_amenities'
+    resources :reservations, only: [:index]
+
+    resources :properties do 
+      patch 'furnish', on: :member
+    end
   end
 end

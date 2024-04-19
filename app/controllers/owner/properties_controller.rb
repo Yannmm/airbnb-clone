@@ -37,9 +37,8 @@ module Owner
             a2 = a1.push(amenity_ids).flatten
 
             # FIXME: why uniq! will make a3 nil?
-            # a3 = a2.uniq!
+            a3 = a2.uniq!
 
-            # raise
             @property.amenities.delete_all
 
             a2.each do |id|

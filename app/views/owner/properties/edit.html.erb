@@ -93,16 +93,13 @@
             <legend class="sr-only">Amenities</legend>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-4">
               <!-- FIXME: how to style collection_check_boxes -->
-              <%= form.collection_check_boxes :amenity_ids, Amenity.all, :id, :name %>
-              <!-- <% Amenity.all.each do |amenity| %>
-                <div class="flex items-center">
-                  <%= form.check_box :amenity_ids, { class: "w-4 h-4 border-gray-300 rounded text-primary focus:ring-primary" } %>
-                  <%= form.label amenity.id, class: "flex items-center justify-between ml-3 text-sm leading-6" do  %>
-                    <%= image_tag amenity.icon, class: "w-6 h-6" %>
-                    <p class="font-light ms-4"><%= amenity.name %></p>
-                  <% end %>
-                </div>
-              <% end %> -->
+              <%= form.collection_check_boxes :amenity_ids, Amenity.all, :id, :name do |b| %>
+                <%= b.label class: "flex items-center justify-start text-sm gap-x-4" do %>
+                  <%= b.check_box class: "w-4 h-4 border-gray-300 rounded text-primary focus:ring-primary" %>
+                  <%= image_tag b.object.icon, class: "w-6 h-6" %>
+                  <p class="font-light"><%= b.text %></p>
+                <% end %>
+              <% end %>
             </div>
           </fieldset>
           <%= form.submit 'Update', class: "mt-12 flex items-center justify-center rounded-md border border-transparent bg-primary px-8 cursor-pointer py-3 text-base font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" %>

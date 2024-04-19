@@ -51,7 +51,11 @@ Rails.application.routes.draw do
     resources :reservations, only: [:index]
 
     resources :properties do 
-      patch 'furnish', on: :member
+      member do 
+        patch 'furnish'
+        # patch 'detach', param: :image_id
+        delete 'detach/:image_id', :action => 'detach', as: 'detach'
+      end
     end
   end
 end

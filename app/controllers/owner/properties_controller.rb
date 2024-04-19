@@ -4,7 +4,7 @@ module Owner
 
         before_action :set_user
 
-        before_action :set_property, only: [:edit, :update, :furnish]
+        before_action :set_property, only: [:edit, :update, :furnish, :detach]
         
         def index 
             @properties = @user.properties
@@ -46,14 +46,22 @@ module Owner
         # end
 
         def furnish
-
             if @property.update(amenities_params)
                 redirect_to root_path, notice: "Update amenities of property #{@property.id} successfully."
             else
                 render :edit, status: unprocessable_entity
             end
+        end
 
-   
+        def detach
+            
+            image = @property.images.find(image_params[:image_id])
+            
+            if image.purge
+                redirect_to root_path, notice: "Remove image of property #{@property.id} successfully."
+            else
+                render :edit, status: unprocessable_entity
+            end
         end
 
         private 
@@ -72,6 +80,10 @@ module Owner
 
         def amenities_params
             params.require(:property).permit(amenity_ids: [])
+        end
+
+        def image_params
+            params.permit(:image_id)
         end
     end
 end

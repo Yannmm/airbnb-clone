@@ -4,7 +4,7 @@ module Owner
 
         before_action :set_user
 
-        before_action :set_property, only: [:edit, :update, :furnish, :detach, :attach]
+        before_action :set_property, only: [:edit, :update, :furnish, :detach, :attach, :destroy]
         
         def index 
             @properties = @user.properties
@@ -26,6 +26,14 @@ module Owner
             else
                 flash.now[:alert] = 'Failed to update property.'
                 render :edit, status: :unprocessable_entity
+            end
+        end
+
+        def destroy
+            if @property.destroy 
+                redirect_to owner_properties_path, notice: 'Delete property successfully.'
+            else 
+                render :edit, status: unprocessable_entity
             end
         end
 

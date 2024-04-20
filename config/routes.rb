@@ -53,7 +53,6 @@ Rails.application.routes.draw do
     resources :properties do 
       member do 
         patch 'furnish'
-        # patch 'detach', param: :image_id
         delete 'detach/:image_id', :action => 'detach', as: 'detach'
         patch 'attach'
       end

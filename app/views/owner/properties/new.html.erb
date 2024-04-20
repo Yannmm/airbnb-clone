@@ -1,1 +1,7 @@
-<h1>this is property new page</h1>
+<div class="mx-auto max-w-7xl lg:flex lg:gap-x-16 lg:px-8">
+  <%= render partial: 'shared/owner_sidebar' %>
+  <main>
+    <!-- Property info -->
+    <%= render 'owner/properties/basics', path: owner_properties_path %>
+  </main>
+</div>

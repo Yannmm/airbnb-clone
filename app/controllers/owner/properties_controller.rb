@@ -11,9 +11,17 @@ module Owner
         end
 
         def new 
+            @property = Property.new
         end
 
         def create
+            @property = Property.new(property_params.merge(user_id: @user.id))
+            if @property.save
+                redirect_to edit_owner_property_path(@property), notice: "Create property #{@property.id} successfully."
+            else
+                flash.now[:alert] = "Failed to create property. Error-> #{@property.errors.full_messages}"
+                render :new, status: :unprocessable_entity
+            end
         end
 
         def edit 

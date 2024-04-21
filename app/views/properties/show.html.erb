@@ -51,27 +51,35 @@
       </div>
     </div>
     <!-- Image gallery -->
-    <div class="max-w-2xl mx-auto mt-6 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-4 lg:gap-x-2 lg:px-2">
-      <div class="col-span-2 overflow-hidden rounded-l-lg aspect-h-2 aspect-w-3 lg:block">
-        <%= image_tag @property.images.first, class: "h-full w-full object-cover object-center" %>
+    <% if @property.images.present? %>
+      <div class="max-w-2xl mx-auto mt-6 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-4 lg:gap-x-2 lg:px-2">
+        <% if @property.images.length < 5 %>
+          <div class="col-span-6 overflow-hidden rounded-l-lg aspect-h-2 aspect-w-3 lg:block">
+            <%= image_tag @property.images.first, class: "h-full w-full object-cover object-center" %>
+          </div>
+        <% else %>
+          <div class="col-span-2 overflow-hidden rounded-l-lg aspect-h-2 aspect-w-3 lg:block">
+            <%= image_tag @property.images.first, class: "h-full w-full object-cover object-center" %>
+          </div>
+          <div class="hidden lg:grid lg:grid-cols-1 lg:gap-y-2">
+            <div class="overflow-hidden aspect-h-2 aspect-w-3">
+              <%= image_tag @property.images.second, class: "h-full w-full object-cover object-center" %>
+            </div>
+            <div class="overflow-hidden aspect-h-2 aspect-w-3">
+              <%= image_tag @property.images.third, class: "h-full w-full object-cover object-center" %>
+            </div>
+          </div>
+          <div class="hidden lg:grid lg:grid-cols-1 lg:gap-y-2">
+            <div class="overflow-hidden rounded-tr-lg aspect-h-2 aspect-w-3">
+              <%= image_tag @property.images.fourth, class: "h-full w-full object-cover object-center" %>
+            </div>
+            <div class="overflow-hidden rounded-br-lg aspect-h-2 aspect-w-3">
+              <%= image_tag @property.images.fifth, class: "h-full w-full object-cover object-center" %>
+            </div>
+          </div>
+        <% end %>
       </div>
-      <div class="hidden lg:grid lg:grid-cols-1 lg:gap-y-2">
-        <div class="overflow-hidden aspect-h-2 aspect-w-3">
-          <%= image_tag @property.images.second, class: "h-full w-full object-cover object-center" %>
-        </div>
-        <div class="overflow-hidden aspect-h-2 aspect-w-3">
-          <%= image_tag @property.images.third, class: "h-full w-full object-cover object-center" %>
-        </div>
-      </div>
-      <div class="hidden lg:grid lg:grid-cols-1 lg:gap-y-2">
-        <div class="overflow-hidden rounded-tr-lg aspect-h-2 aspect-w-3">
-          <%= image_tag @property.images.fourth, class: "h-full w-full object-cover object-center" %>
-        </div>
-        <div class="overflow-hidden rounded-br-lg aspect-h-2 aspect-w-3">
-          <%= image_tag @property.images.fifth, class: "h-full w-full object-cover object-center" %>
-        </div>
-      </div>
-    </div>
+    <% end %>
     <!-- Property info -->
     <div class="mx-auto max-w-2xl px-4 pt-8 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pt-8">
       <!-- Name + Description -->

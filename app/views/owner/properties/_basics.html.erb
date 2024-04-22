@@ -32,7 +32,7 @@
         <!-- Guest count -->
         <div class="lg:col-span-2 col-span-full">
           <%= form.label :guest_count, class: "text-sm font-medium leading-6 text-gray-900" %>
-          <%= form.select :guest_count, (1..20).to_a, { include_blank: false }, { class: 'form-control mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6' } %>
+          <%= form.number_field :guest_count, class: 'form-control mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6' %>
         </div>
         <!-- Bedroom count -->
         <div class="lg:col-span-2 col-span-full">

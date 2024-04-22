@@ -8,7 +8,30 @@
       <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
     </svg>
   </button>
-  <div class="grid grid-cols-6 gap-8">
-    <h1>Search it!!!</h1>
+  <div class="flex flex-col mx-6 my-6" data-controller="search">
+    <h2 class="mt-6 text-2xl font-medium leading-6 text-gray-900" id="modal-title">Search</h2>
+    <%= form_with url: root_path, class: "grid grid-cols-1 mt-6 gap-y-4" do |form| %>
+      <div class="grid items-center grid-cols-2">
+        <%= form.label 'Select country', class: "text-sm font-medium leading-6 text-gray-900" %>
+        <%= country_select(:profile, :country_code, { include_blank: 'Select a country' }, { class: 'form-control mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6' }) %>
+      </div>
+      <div class="grid items-center grid-cols-2">
+        <%= form.label :check_in, class: "text-sm font-medium leading-6 text-gray-900" %>
+        <%= form.text_field :check_in, class: 'form-control mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6', placeholder: Date.tomorrow.strftime('%Y-%m-%d'), value: Date.tomorrow.strftime('%Y-%m-%d'), data: { search_target: "checkin" } %>
+      </div>
+      <div class="grid items-center grid-cols-2">
+        <%= form.label :check_out, class: "text-sm font-medium leading-6 text-gray-900" %>
+        <input 
+              type="text" 
+              name="checkout" 
+              id="checkout" 
+              class='form-control mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6'
+              placeholder="<%= (Date.tomorrow + 1.day).strftime('%Y-%m-%d') %>"
+              value="<%= (Date.tomorrow + 1.day).strftime('%Y-%m-%d') %>"
+              data-search-target="checkout"
+        >
+      </div>
+      <%= form.submit 'Search', class: "mt-12 flex items-center justify-center rounded-md border border-transparent bg-primary px-8 cursor-pointer py-3 text-base font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" %>
+    <% end %>
   </div>
 </div>

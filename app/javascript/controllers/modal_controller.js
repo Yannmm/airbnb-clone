@@ -9,6 +9,7 @@ export default class extends Controller {
     // this.mobileUserMenuButtonTarget.addEventListener("click", (e) => {
     //   toggle(this.mobileUserOptionsDropdownTarget);
     // });
+    
   }
 
   show(event) {
@@ -18,7 +19,6 @@ export default class extends Controller {
 
   hide(event) {
     const id = event.target.dataset.where;
-
     leave(document.getElementById(id));
   }
 }

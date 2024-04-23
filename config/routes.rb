@@ -32,6 +32,8 @@ Rails.application.routes.draw do
 
   get "/booking_payments/success", to: "booking_payments#success"
 
+  get "/search", to: "search#index"
+
   resource :profile, only: [:edit, :update]
   resolve('Profile') { [:profile] }
 

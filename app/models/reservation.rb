@@ -12,5 +12,10 @@ class Reservation < ApplicationRecord
 
   # TODO: what is scope?
   scope :upcoming_reservations, -> { where("checkin_date > ?", Date.today).order(:checkin_date) }
+
   scope :current_reservations, -> { where("checkout_date > ?", Date.today).where("checkin_date < ?", Date.today).order(:checkout_date) }
+
+  scope :overlapping_reservations, -> (checkin_date, checkout_date) {
+    where("checkin_date <= ? AND checkout_date >= ?", checkin_date, checkout_date)
+  }
 end

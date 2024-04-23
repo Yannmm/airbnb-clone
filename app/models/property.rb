@@ -30,6 +30,10 @@ class Property < ApplicationRecord
 
     has_rich_text :description
 
+    def self.with_reservations_overlap(checkin_date, checkout_date)
+        where(id: Reservation.overlapping_reservations(checkin_date, checkout_date).pluck(:property_id))
+    end
+
 
     def update_average_final_rating
         avg = reviews.average(:final_rating)

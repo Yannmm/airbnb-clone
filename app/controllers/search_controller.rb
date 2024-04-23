@@ -12,7 +12,7 @@ class SearchController < ApplicationController
         end
 
         if search_params[:checkin_date].present? && search_params[:checkout_date].present?
-            @properties = @properties.with_reservations_overlap(search_params[:checkin_date], search_params[:checkout_date])
+            @properties = @properties.unreserved(search_params[:checkin_date], search_params[:checkout_date])
         end
     end
 

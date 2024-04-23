@@ -16,6 +16,6 @@ class Reservation < ApplicationRecord
   scope :current_reservations, -> { where("checkout_date > ?", Date.today).where("checkin_date < ?", Date.today).order(:checkout_date) }
 
   scope :overlapping_reservations, -> (checkin_date, checkout_date) {
-    where("checkin_date <= ? AND checkout_date >= ?", checkin_date, checkout_date)
+    where("checkin_date <= :checkout_date AND checkout_date >= :checkin_date", { checkin_date: checkin_date, checkout_date: checkout_date })
   }
 end

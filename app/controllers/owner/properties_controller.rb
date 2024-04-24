@@ -7,7 +7,7 @@ module Owner
         before_action :set_property, only: [:edit, :update, :furnish, :detach, :attach, :destroy]
         
         def index 
-            @properties = @user.properties
+            @properties = @user.properties.order(updated_at: :desc)
         end
 
         def new 

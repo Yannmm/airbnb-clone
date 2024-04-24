@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_16_051758) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_24_093349) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -109,6 +109,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_16_051758) do
     t.integer "bed_count", default: 0
     t.integer "bathroom_count", default: 0
     t.bigint "user_id", null: false
+    t.decimal "latitude", default: "0.0"
+    t.decimal "longitude", default: "0.0"
     t.index ["user_id"], name: "index_properties_on_user_id"
   end
 

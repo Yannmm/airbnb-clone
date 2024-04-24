@@ -144,6 +144,8 @@ user_ids = User.all.pluck(:id)
         city: Faker::Address.city,
         state: Faker::Address.state,
         country_code: Faker::Address.country_code,
+        latitude: Faker::Address.latitude,
+        longitude: Faker::Address.longitude,
         bedroom_count: (1..5).to_a.sample,
         guest_count: (2..20).to_a.sample,
         bed_count: (4..10).to_a.sample,

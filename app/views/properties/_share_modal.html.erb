@@ -11,18 +11,18 @@
   </button>
   <h2 class="mx-6 mt-6 text-2xl font-medium leading-6 text-gray-900" id="modal-title">Share this place</h2>
   <div class="m-6">
-    <div class="flex items-center">
+    <!-- <div class="flex items-center">
       <% if content_params[:property].images.present? %>
         <%= image_tag content_params[:property].images[0], class:"w-16 h-16 object-cover rounded-md"%>
       <% else %>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="object-cover w-16 h-16 rounded-md">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16" stroke-width="1.5" stroke="currentColor" class="object-cover w-16 h-16 rounded-md">
           <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
         </svg>
       <% end %>
       <div class="ml-3 font-light text-black">
         <%= content_params[:property].name %> - <%= content_params[:property].city %>, <%= content_params[:property].state %>
         · 
-        <span class="inline-flex items-center block text-sm font-light text-black pointer-events-none">
+        <span class="inline-flex items-center text-sm font-light text-black pointer-events-none">
           <svg class="mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 12px; width: 12px; fill: currentcolor;">
             <path fill-rule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path>
           </svg>
@@ -33,7 +33,8 @@
           <% end %>
         </span>
       </div>
-    </div>
+    </div> -->
+    <%= render 'properties/thumbnail', property: content_params[:property] %>
     <div class="grid grid-cols-1 gap-4 mt-6 sm:grid-cols-2">
       <div data-action="click->share-modal#copyLink" class="relative flex items-center px-6 py-5 space-x-6 bg-white border border-gray-300 rounded-lg shadow-sm cursor-pointer focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400 hover:bg-gray-100">
         <svg class="rounded" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 32px; width: 32px; fill: currentcolor;"><path d="M25 5a4 4 0 0 1 4 4v17a5 5 0 0 1-5 5H12a5 5 0 0 1-5-5V10a5 5 0 0 1 5-5h13zm0 2H12a3 3 0 0 0-3 3v16a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V9a2 2 0 0 0-2-2zm-3-6v2H11a6 6 0 0 0-6 5.78V22H3V9a8 8 0 0 1 7.75-8H22z"></path></svg>

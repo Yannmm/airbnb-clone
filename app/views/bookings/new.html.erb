@@ -36,30 +36,7 @@
         class="p-6 mt-4 border border-gray-300 lg:col-span-2 lg:mt-0 rounded-xl h-min" 
       >
       <h2 class="sr-only">Booking Information</h2>
-      <div class="flex items-center">
-        <% if @property.images.present? %>
-          <%= image_tag @property.images[0], class:"w-24 h-24 object-cover rounded-md"%>
-        <% else %>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="object-cover w-24 h-24 rounded-md">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-          </svg>
-        <% end %>
-        <div class="ml-3 font-medium text-black">
-          <div>
-            <%= @property.name %> - <%= @property.city %>, <%= @property.state %>
-          </div>
-          <span class="inline-flex items-center block mt-2 text-sm font-medium text-black pointer-events-none">
-            <svg class="mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 12px; width: 12px; fill: currentcolor;">
-              <path fill-rule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path>
-            </svg>
-            <% if @property.reviews_count > 0 %>
-              <%= @property.average_final_rating.round(2) %> (<%= @property.reviews_count %> reviews)
-            <% else %>
-              New
-            <% end %>
-          </span>
-        </div>
-      </div>
+      <%= render 'properties/thumbnail', property: @property %>
       <div class="relative py-4">
         <div class="absolute inset-0 flex items-center">
           <div class="w-full border-t border-gray-300"></div>

@@ -10,7 +10,6 @@ class Reservation < ApplicationRecord
 
   has_one :review
 
-  # TODO: what is scope?
   scope :upcoming_reservations, -> { where("checkin_date > ?", Date.today).order(:checkin_date) }
 
   scope :current_reservations, -> { where("checkout_date > ?", Date.today).where("checkin_date < ?", Date.today).order(:checkout_date) }

@@ -1,5 +1,10 @@
 <%= link_to property_path(property) do %>
-  <div class="relative cursor-pointer group">
+  <div class="relative cursor-pointer group" 
+  data-map-target="property" 
+  data-latitude=<%= property.latitude %> 
+  data-longitude=<%= property.longitude %>
+  data-price=<%= humanized_money_with_symbol property.price %>
+  >
     <!-- Slider main container -->
     <div class="relative overflow-hidden bg-gray-200 rounded-md">
       <div class="swiper">

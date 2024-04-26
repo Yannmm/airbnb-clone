@@ -51,7 +51,7 @@ pictures = []
 end
 
 user = User.create!({
-    email: 'test1@gmail.com',
+    email: 'test99@gmail.com',
     password: '123456',
 
 })
@@ -69,38 +69,27 @@ country_code: Faker::Address.country_code,)
 downloaded_image = URI.parse(pictures[0]).open
 user.profile.picture.attach(io: downloaded_image, filename: user.profile.name)
 
-19.times do |i|
-    random_user = User.create!({
-    email: "test#{i + 2}@gmail.com",
-    password: '123456',
-})
+# 19.times do |i|
+#     random_user = User.create!({
+#     email: "test#{i + 2}@gmail.com",
+#     password: '123456',
+# })
 
-# profile = Profile.create!(
-#  {
-#     user_id: random_user.id,
-    # name: Faker::Lorem.unique.sentence(word_count: 2),
-    # address_1: Faker::Address.street_address,
-    # address_2: Faker::Address.street_name,
-    # city: Faker::Address.city,
-    # state: Faker::Address.state,
-    # country: Faker::Address.country,
-#  }
+
+# random_user.profile.update(
+#     first_name: Faker::Name.first_name,
+#     last_name: Faker::Name.last_name,
+#     zip_code: Faker::Address.zip_code,
+#     address_1: Faker::Address.street_address,
+#     address_2: Faker::Address.street_name,
+#     city: Faker::Address.city,
+#     state: Faker::Address.state,
+#     country_code: Faker::Address.country_code,
 # )
 
-random_user.profile.update(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    zip_code: Faker::Address.zip_code,
-    address_1: Faker::Address.street_address,
-    address_2: Faker::Address.street_name,
-    city: Faker::Address.city,
-    state: Faker::Address.state,
-    country_code: Faker::Address.country_code,
-)
-
-    downloaded_image = URI.parse(pictures[i + 1]).open
-    random_user.profile.picture.attach(io: downloaded_image, filename: random_user.profile.name)
-end
+#     downloaded_image = URI.parse(pictures[i + 1]).open
+#     random_user.profile.picture.attach(io: downloaded_image, filename: random_user.profile.name)
+# end
 
 description = <<-DESCIRPTION
 <div>

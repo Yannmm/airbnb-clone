@@ -79,6 +79,6 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
-  database: airbnb_production
+  # <<: *default
+  # database: airbnb_production
   url: <%= ENV['DATABASE_URL'] %>

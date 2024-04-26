@@ -1,5 +1,6 @@
 class SearchController < ApplicationController
     def index 
+        @map_api_key = ENV["GOOGLE_MAP_API_KEY"]
         if empty_params?
             redirect_to root_path
             return

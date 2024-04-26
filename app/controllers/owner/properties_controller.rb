@@ -5,6 +5,8 @@ module Owner
         before_action :set_user
 
         before_action :set_property, only: [:edit, :update, :furnish, :detach, :attach, :destroy, :locate]
+
+        before_action :set_map_api_key, only: [:edit]
         
         def index 
             @properties = @user.properties.order(updated_at: :desc)
@@ -89,6 +91,10 @@ module Owner
 
         def set_property
             @property = current_user.properties.find(params[:id])
+        end
+
+        def set_map_api_key
+            @map_api_key = ENV["GOOGLE_MAP_API_KEY"]
         end
 
         def property_params 

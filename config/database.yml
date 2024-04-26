@@ -15,7 +15,6 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: localhost
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -36,7 +35,7 @@ development:
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
   # domain sockets, so uncomment these lines.
-  # host: database
+  host: database
 
   # The TCP port the server listens on. Defaults to 5432.
   # If your server runs on a different port number, change accordingly.
@@ -79,6 +78,6 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  # <<: *default
-  # database: airbnb_production
+  <<: *default
+  database: airbnb_production
   url: <%= ENV['DATABASE_URL'] %>

@@ -4,7 +4,7 @@ module Owner
 
         before_action :set_user
 
-        before_action :set_property, only: [:edit, :update, :furnish, :detach, :attach, :destroy]
+        before_action :set_property, only: [:edit, :update, :furnish, :detach, :attach, :destroy, :locate]
         
         def index 
             @properties = @user.properties.order(updated_at: :desc)
@@ -72,6 +72,15 @@ module Owner
             end
         end
 
+        def locate 
+            if @property.update(coordinate_params)
+                redirect_to edit_owner_property_path, notice: 'Update property location successfully.'
+            else
+                flash.now[:alert] = 'Failed to update location.'
+                render :edit, status: :unprocessable_entity
+            end
+        end
+
         private 
 
         def set_user 
@@ -92,6 +101,10 @@ module Owner
 
         def image_params
             params.permit(:image_id)
+        end
+        
+        def coordinate_params 
+            params.require(:property).permit(:latitude, :longitude)
         end
     end
 end

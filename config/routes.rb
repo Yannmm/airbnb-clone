@@ -57,6 +57,7 @@ Rails.application.routes.draw do
         patch 'furnish'
         delete 'detach/:image_id', :action => 'detach', as: 'detach'
         patch 'attach'
+        patch 'locate'
       end
     end
   end

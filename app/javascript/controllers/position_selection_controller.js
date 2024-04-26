@@ -1,38 +1,49 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = [];
+  static targets = ['latitude', 'longitude'];
+
+  
 
   connect() {
-    console.log("xx1111");
+    const latitudeField = this.latitudeTarget;
+    const longitudeField = this.longitudeTarget;
+
+    const markers = [];
 
     async function initMap() {
       // Request needed libraries.
       const { Map } = await google.maps.importLibrary("maps");
-      const myLatlng = { lat: -25.363, lng: 131.044 };
+      const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+      const myLatlng = { lat: parseFloat(latitudeField.value), lng: parseFloat(longitudeField.value) };
       const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 4,
+        zoom: 3,
         center: myLatlng,
+        mapId: "DEMO_MAP_ID",
       });
-      // Create the initial InfoWindow.
-      let infoWindow = new google.maps.InfoWindow({
-        content: "Click the map to get Lat/Lng!",
+      
+      const marker = new AdvancedMarkerElement({
+        map: map,
         position: myLatlng,
       });
+      markers.push(marker);
 
-      infoWindow.open(map);
       // Configure the click listener.
       map.addListener("click", (mapsMouseEvent) => {
-        // Close the current InfoWindow.
-        infoWindow.close();
-        // Create a new InfoWindow.
-        infoWindow = new google.maps.InfoWindow({
+        // const text = JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2);
+
+        latitudeField.value = mapsMouseEvent.latLng.lat()
+        longitudeField.value = mapsMouseEvent.latLng.lng()
+
+        const marker = new AdvancedMarkerElement({
+          map: map,
           position: mapsMouseEvent.latLng,
         });
-        infoWindow.setContent(
-          JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2),
-        );
-        infoWindow.open(map);
+
+        for (let i = 0; i < markers.length; i++) {
+          markers[i].setMap(null);
+        }
+        markers.push(marker);
       });
     }
 

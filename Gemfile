@@ -78,3 +78,6 @@ gem 'money-rails', '~> 1.12'
 gem "stripe-rails"
 
 gem 'country_select', '~> 8.0'
+
+
+gem 'cloudinary'

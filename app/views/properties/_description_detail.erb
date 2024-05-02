@@ -1,15 +1,15 @@
 <div>
   <button 
     data-action="click->modal#hide"
-    type="button" class="relative rounded-md bg-white text-gray-400 hover:text-gray-500">
-    <span class="absolute -inset-2.5" data-where="description"></span>
+    type="button" class="relative text-gray-400 bg-white rounded-md hover:text-gray-500">
+    <span class="absolute -inset-2.5"></span>
     <span class="sr-only">Close panel</span>
-    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
     </svg>
   </button>
   <div class="py-6">
     <h2 class="text-xl font-medium leading-6 text-gray-900">About this place</h2>
-    <p class="text-base font-light text-gray-900 mt-6"><%= content_params[:description] %></p>
+    <p class="mt-6 text-base font-light text-gray-900"><%= content_params[:description] %></p>
   </div>
 </div>

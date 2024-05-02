@@ -8,7 +8,7 @@ export default class extends Controller {
   }
 
   hide(event) {
-    const id = event.target.dataset.where;
-    leave(document.getElementById(id));
+    const modal = event.target.closest("[data-controller=modal]");
+    leave(modal);
   }
 }

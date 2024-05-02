@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
+  get '/home/search', to: "home#search"
+
   get "up" => "rails/health#show", as: :rails_health_check
 
 

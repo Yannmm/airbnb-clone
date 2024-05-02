@@ -39,6 +39,7 @@
     </script>
   </head>
   <body>
+    <%= turbo_frame_tag :modal %>
     <% if controller_name != 'registrations' && controller_name != 'sessions' %>
       <%= render 'layouts/header' %>
     <% end %>

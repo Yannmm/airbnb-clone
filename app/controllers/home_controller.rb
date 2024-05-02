@@ -3,4 +3,7 @@ class HomeController < ApplicationController
     @properties = Property.order(updated_at: :desc)
   end
 
+  def search
+  end
+
 end

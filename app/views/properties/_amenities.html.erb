@@ -8,14 +8,7 @@
       <% end %>
     </div>
     <% if amenities.count > 8 %>
-      <button 
-        data-controller="modal"
-        data-action="click->modal#show"
-        data-where="amenities"
-        type="button" 
-        class="px-4 py-3 mt-8 text-lg font-medium text-gray-900 bg-white rounded-md ring-black ring-2 hover:bg-gray-50"
-        >Show all <%= amenities.count %> amenities</button>
+      <%= button_to "Show All #{ amenities.count } amenities", ensemble_property_path, method: :get, data: { turbo_frame: :modal }, class: "px-4 py-3 mt-8 text-lg font-medium text-gray-900 bg-white rounded-md ring-black ring-2 hover:bg-gray-50" %>
     <% end %>
   </div>
 </div>
-<%= render 'shared/modal', content: "properties/amenities_list", where: 'amenities', content_params: { amenities: amenities } %>

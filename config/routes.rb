@@ -24,8 +24,14 @@ Rails.application.routes.draw do
   # TODO: how about singualr resource
   resources :wishlists, only: [:index]
 
-  resources :properties, only: [:show, :index] do
+  resources :properties, only: [:show] do
     resources :bookings, only: [:new]
+    member do 
+      get 'description'
+      get 'share'
+      get 'ensemble'
+      get 'repertoire'
+    end
   end
 
   resources :booking_payments, only: [:create]

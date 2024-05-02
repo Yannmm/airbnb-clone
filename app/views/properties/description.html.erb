@@ -1,0 +1,3 @@
+<%= turbo_frame_tag :modal do %>
+  <%= render 'shared/modal', content: 'description_detail', where: 'description', content_params: { description: @property.description } %>
+<% end %>

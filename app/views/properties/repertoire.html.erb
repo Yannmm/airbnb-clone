@@ -1,0 +1,3 @@
+<%= turbo_frame_tag :modal do %>
+  <%= render partial: 'shared/modal', locals: { content: "properties/reviews_list", where: "reviews", content_params: { property: @property, overall_rating_counts: @overall_rating_counts } } %>
+<% end %>

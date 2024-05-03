@@ -59,6 +59,14 @@ class Property < ApplicationRecord
         wishlisted_users.include?(user)
     end
 
+    def wishlist(user)
+        wishlists.find_or_create_by(user_id: user.id)
+    end
+
+    def unwishlist(user)
+        wishlists.where(user: user).destroy_all
+    end
+
     def find_wishlist(user)
         wishlists.find_by(user: user)
     end

@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   resources :wishlists, only: [:index]
 
   resources :properties, only: [:show] do
+    resource :wishlist, only: [:update], module: :properties
     resources :bookings, only: [:new]
     member do 
       get 'description'

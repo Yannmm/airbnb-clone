@@ -1,5 +1,5 @@
 <%= turbo_frame_tag property, :wishlist, target: user_signed_in? ? "_self" : "_top" do %>
-  <%= button_to property_wishlist_path(property), method: :put do %>
+  <%= button_to property_wishlist_path(property), method: :put, onclick: 'event.stopPropagation();' do %>
     <svg 
             class="z-20 block h-6 w-6 stroke-white stroke-2 <%= property.wishlisted_by?(current_user) ? "fill-primary" : "fill-none" %>" 
             xmlns="http://www.w3.org/2000/svg" 
